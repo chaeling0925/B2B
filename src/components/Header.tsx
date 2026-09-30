@@ -49,14 +49,14 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <header className="sticky top-0 z-40 bg-[#0B0F17]/95 backdrop-blur-md border-b border-slate-800 text-slate-100">
-      {/* Top Banner when Biz Mode is active */}
+      {/* Top Banner */}
       {bizMode && (
-        <div className="bg-[#070A10] text-slate-400 text-[11px] py-1.5 px-4 sm:px-8 border-b border-slate-800/60 transition-all">
+        <div className="bg-[#070A12] text-slate-400 text-[11px] py-1.5 px-4 sm:px-8 border-b border-slate-800/60 transition-all">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             <div className="flex items-center gap-3">
               <span className="flex items-center gap-1.5 font-bold text-slate-200">
                 <ShieldCheck className="w-3.5 h-3.5 text-pink-400" />
-                콘텐트립 AI 브랜드 전용 모드
+                콘텐트립 AI 엔터프라이즈
               </span>
               <span className="text-slate-700">|</span>
               <span className="text-slate-400 hidden md:inline">
@@ -84,7 +84,7 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Main Bar matching Contentrip Clean Dark Aesthetic */}
       <div className="max-w-7xl mx-auto px-4 sm:px-8 h-18 flex items-center justify-between gap-6">
-        {/* Left: Contentrip Logo & 콘텐트립 AI Switcher */}
+        {/* Left: Contentrip Logo */}
         <div className="flex items-center gap-4 shrink-0">
           <button 
             onClick={onNavigateHome}
@@ -92,28 +92,6 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <ContentripLogo size="md" textSuffix="AI" />
           </button>
-
-          <span className="text-slate-800 font-light text-base select-none">|</span>
-
-          {/* BIZ Mode Switcher */}
-          <div className="flex items-center gap-2">
-            <span className="text-xs sm:text-sm font-medium text-slate-300">
-              브랜드 전용
-            </span>
-            <button
-              onClick={onToggleBizMode}
-              className={`relative inline-flex h-5 w-10 shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out focus:outline-none ${
-                bizMode ? 'bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 shadow-[0_0_12px_rgba(236,72,153,0.4)]' : 'bg-slate-700'
-              }`}
-              title="콘텐트립 AI 브랜드 전용 모드 전환"
-            >
-              <span
-                className={`inline-block h-4 w-4 transform rounded-full bg-white transition duration-200 ease-in-out mt-[2px] shadow-sm ${
-                  bizMode ? 'translate-x-5' : 'translate-x-0.5'
-                }`}
-              />
-            </button>
-          </div>
         </div>
 
         {/* Right Menu Links */}

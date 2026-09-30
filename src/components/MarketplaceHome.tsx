@@ -149,8 +149,8 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
             </div>
 
             {/* Quick Search Bar with Neon Focus Ring */}
-            <div className="relative max-w-lg pt-3">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <div className="relative max-w-lg mt-4">
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
               <input
                 type="text"
                 value={searchQuery}
@@ -160,7 +160,7 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
               />
               <button
                 onClick={onOpenPipeline || onOpenRfp}
-                className="absolute right-2 top-1/2 -translate-y-1/2 px-3.5 py-1.5 bg-gradient-to-r from-[#FF2E93] to-[#8B5CF6] hover:opacity-90 text-white text-[11px] font-bold rounded-lg cursor-pointer transition-all shadow-md shadow-pink-500/20"
+                className="absolute right-1.5 top-1/2 -translate-y-1/2 px-3.5 py-1.5 bg-gradient-to-r from-[#FF2E93] to-[#8B5CF6] hover:opacity-90 text-white text-[11px] font-bold rounded-lg cursor-pointer transition-all shadow-md shadow-pink-500/20"
               >
                 매칭 요청
               </button>
