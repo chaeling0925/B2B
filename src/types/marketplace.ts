@@ -27,6 +27,8 @@ export interface Creator {
   name: string;
   agencyName: string;
   avatar: string;
+  logoText?: string;
+  partnerBadge?: string;
   grade: 'Prime AI Master' | 'Top Prompt Director' | 'Enterprise Verified';
   aiSpecialty: string;
   primaryTools: string[];
@@ -62,6 +64,12 @@ export interface ServiceItem {
   creator: Creator;
   heroImage: string;
   galleryImages: string[];
+  videoWatermark?: string;
+  bulletFeatures?: string[];
+  managerRecommendation?: {
+    quote: string;
+    author: string;
+  };
   startingPrice: number;
   rating: number;
   reviewCount: number;

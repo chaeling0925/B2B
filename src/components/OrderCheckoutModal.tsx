@@ -56,10 +56,10 @@ export const OrderCheckoutModal: React.FC<OrderCheckoutModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs">
-      <div className="bg-[#0B0F19] text-slate-100 rounded-2xl max-w-xl w-full max-h-[92vh] overflow-y-auto shadow-2xl border border-slate-800">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+      <div className="bg-[#0B0F19] text-slate-100 rounded-3xl max-w-xl w-full max-h-[92vh] overflow-y-auto shadow-2xl shadow-black/80">
         {/* Header */}
-        <div className="p-5 border-b border-slate-800 flex items-center justify-between bg-[#0F1424]">
+        <div className="p-5 flex items-center justify-between bg-[#0F1424]">
           <div>
             <div className="flex items-center gap-1.5 text-cyan-400 text-xs font-bold mb-1">
               <ShieldCheck className="w-4 h-4 text-pink-400" />
@@ -80,10 +80,10 @@ export const OrderCheckoutModal: React.FC<OrderCheckoutModalProps> = ({
         {/* Body */}
         <div className="p-6 space-y-6 text-xs text-slate-300">
           {/* Order Item Summary */}
-          <div className="p-4 bg-[#0F1424] rounded-xl border border-slate-800 space-y-2">
+          <div className="p-4 bg-[#0F1424] rounded-2xl shadow-md space-y-2">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <span className="text-[10px] font-bold text-pink-400 bg-pink-950/60 border border-pink-500/30 px-2 py-0.5 rounded">
+                <span className="text-[10px] font-bold text-pink-400 bg-pink-950/60 px-2.5 py-1 rounded-lg">
                   {selectedPackage.name} 패키지
                 </span>
                 <h3 className="font-bold text-white text-sm mt-1">
@@ -101,7 +101,7 @@ export const OrderCheckoutModal: React.FC<OrderCheckoutModalProps> = ({
               </div>
             </div>
 
-            <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
+            <div className="pt-2 flex items-center justify-between text-[11px] text-slate-400">
               <span>수정 횟수: {selectedPackage.revisionCount}</span>
               <span>제공 시안: {selectedPackage.conceptsCount}개</span>
               <span className="text-pink-400 font-semibold">원본 AI 파일 및 저작권 양도 포함</span>
@@ -114,7 +114,7 @@ export const OrderCheckoutModal: React.FC<OrderCheckoutModalProps> = ({
               <span className="font-bold text-white">전자세금계산서 발행 정보</span>
               <span className="text-cyan-400 font-semibold text-[11px]">100% 국세청 당일 전송</span>
             </div>
-            <div className="p-3 bg-slate-900/60 border border-slate-800 rounded-xl space-y-1 text-slate-300">
+            <div className="p-3 bg-slate-900/60 rounded-xl space-y-1 text-slate-300 shadow-xs">
               <div className="flex justify-between">
                 <span className="text-slate-500">회사명:</span>
                 <span className="font-semibold text-white">{ENTERPRISE_CLIENT_PROFILE.companyName}</span>
@@ -137,10 +137,10 @@ export const OrderCheckoutModal: React.FC<OrderCheckoutModalProps> = ({
               <button
                 type="button"
                 onClick={() => setPaymentMethod('card')}
-                className={`p-3 rounded-xl border text-center transition-all ${
+                className={`p-3 rounded-2xl text-center transition-all cursor-pointer ${
                   paymentMethod === 'card'
-                    ? 'border-pink-500 bg-pink-950/30 text-pink-300 font-bold shadow-[0_0_15px_rgba(236,72,153,0.3)]'
-                    : 'border-slate-800 hover:border-slate-700 bg-slate-900/40 text-slate-400'
+                    ? 'bg-pink-950/60 text-pink-300 font-bold shadow-[0_0_15px_rgba(236,72,153,0.3)]'
+                    : 'bg-slate-900/60 hover:bg-slate-850 text-slate-400'
                 }`}
               >
                 <CreditCard className="w-4 h-4 mx-auto mb-1 text-pink-400" />
@@ -150,10 +150,10 @@ export const OrderCheckoutModal: React.FC<OrderCheckoutModalProps> = ({
               <button
                 type="button"
                 onClick={() => setPaymentMethod('escrow_vbank')}
-                className={`p-3 rounded-xl border text-center transition-all ${
+                className={`p-3 rounded-2xl text-center transition-all cursor-pointer ${
                   paymentMethod === 'escrow_vbank'
-                    ? 'border-cyan-500 bg-cyan-950/30 text-cyan-300 font-bold shadow-[0_0_15px_rgba(6,182,212,0.3)]'
-                    : 'border-slate-800 hover:border-slate-700 bg-slate-900/40 text-slate-400'
+                    ? 'bg-cyan-950/60 text-cyan-300 font-bold shadow-[0_0_15px_rgba(6,182,212,0.3)]'
+                    : 'bg-slate-900/60 hover:bg-slate-850 text-slate-400'
                 }`}
               >
                 <Building2 className="w-4 h-4 mx-auto mb-1 text-cyan-400" />
@@ -163,10 +163,10 @@ export const OrderCheckoutModal: React.FC<OrderCheckoutModalProps> = ({
               <button
                 type="button"
                 onClick={() => setPaymentMethod('postpay')}
-                className={`p-3 rounded-xl border text-center transition-all ${
+                className={`p-3 rounded-2xl text-center transition-all cursor-pointer ${
                   paymentMethod === 'postpay'
-                    ? 'border-indigo-500 bg-indigo-950/30 text-indigo-300 font-bold shadow-[0_0_15px_rgba(99,102,241,0.3)]'
-                    : 'border-slate-800 hover:border-slate-700 bg-slate-900/40 text-slate-400'
+                    ? 'bg-indigo-950/60 text-indigo-300 font-bold shadow-[0_0_15px_rgba(99,102,241,0.3)]'
+                    : 'bg-slate-900/60 hover:bg-slate-850 text-slate-400'
                 }`}
               >
                 <FileText className="w-4 h-4 mx-auto mb-1 text-indigo-400" />
@@ -176,13 +176,13 @@ export const OrderCheckoutModal: React.FC<OrderCheckoutModalProps> = ({
           </div>
 
           {/* Agreements */}
-          <div className="p-3 bg-[#0F1424] rounded-xl border border-slate-800 space-y-2">
+          <div className="p-3 bg-[#0F1424] rounded-2xl space-y-2 shadow-xs">
             <label className="flex items-center gap-2 cursor-pointer">
               <input
                 type="checkbox"
                 checked={agreeTerms}
                 onChange={(e) => setAgreeTerms(e.target.checked)}
-                className="rounded text-pink-500 focus:ring-pink-500 w-4 h-4 bg-slate-900 border-slate-700"
+                className="rounded text-pink-500 focus:ring-pink-500 w-4 h-4 bg-slate-900 border-none"
               />
               <span className="font-semibold text-slate-200">
                 [필수] 표준 용역 계약 조건 및 마켓플레이스 에스크로 보호 약관에 동의합니다.
@@ -193,7 +193,7 @@ export const OrderCheckoutModal: React.FC<OrderCheckoutModalProps> = ({
                 type="checkbox"
                 checked={agreeNda}
                 onChange={(e) => setAgreeNda(e.target.checked)}
-                className="rounded text-pink-500 focus:ring-pink-500 w-4 h-4 bg-slate-900 border-slate-700"
+                className="rounded text-pink-500 focus:ring-pink-500 w-4 h-4 bg-slate-900 border-none"
               />
               <span className="text-slate-400">
                 [선택] 프로젝트 산출물 및 전달 데이터에 대한 비밀유지협약(NDA)을 체결합니다.
@@ -204,14 +204,14 @@ export const OrderCheckoutModal: React.FC<OrderCheckoutModalProps> = ({
           {/* Order Action Button */}
           <div className="pt-2">
             {errorMessage && (
-              <div className="mb-2 p-2.5 rounded-lg bg-pink-950/60 border border-pink-500/50 text-pink-300 text-xs font-medium">
+              <div className="mb-2 p-2.5 rounded-xl bg-pink-950/60 text-pink-300 text-xs font-medium">
                 {errorMessage}
               </div>
             )}
             <button
               onClick={handleConfirmOrder}
               disabled={isProcessing}
-              className="w-full py-4 bg-gradient-to-r from-[#FF2E93] via-[#8B5CF6] to-[#00F0FF] hover:opacity-95 disabled:opacity-50 text-white font-bold rounded-xl text-sm transition-all shadow-[0_0_20px_rgba(255,46,147,0.35)] flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full py-4 bg-gradient-to-r from-[#FF2E93] via-[#8B5CF6] to-[#00F0FF] hover:opacity-95 disabled:opacity-50 text-white font-bold rounded-2xl text-sm transition-all shadow-[0_0_20px_rgba(255,46,147,0.35)] flex items-center justify-center gap-2 cursor-pointer"
             >
               {isProcessing ? (
                 <span>전자계약서 생성 및 에스크로 정산 진행 중...</span>

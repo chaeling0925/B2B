@@ -48,10 +48,10 @@ export const Header: React.FC<HeaderProps> = ({
   const [showProfileMenu, setShowProfileMenu] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 bg-[#0B0F17]/95 backdrop-blur-md border-b border-slate-800 text-slate-100">
+    <header className="sticky top-0 z-40 bg-[#0B0F17]/95 backdrop-blur-md shadow-lg shadow-black/30 text-slate-100">
       {/* Top Banner */}
       {bizMode && (
-        <div className="bg-[#070A12] text-slate-400 text-[11px] py-1.5 px-4 sm:px-8 border-b border-slate-800/60 transition-all">
+        <div className="bg-[#070A12] text-slate-400 text-[11px] py-1.5 px-4 sm:px-8 transition-all">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             <div className="flex items-center gap-3">
               <span className="flex items-center gap-1.5 font-bold text-slate-200">
@@ -99,10 +99,10 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Dedicated AI Project Pipeline Link */}
           <button
             onClick={onOpenPipeline || onOpenRfp}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border transition-all text-xs font-semibold cursor-pointer ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all text-xs font-semibold cursor-pointer ${
               activeView === 'pipeline'
-                ? 'bg-gradient-to-r from-pink-500/20 via-purple-500/20 to-cyan-500/20 border-pink-500 text-white shadow-[0_0_15px_rgba(236,72,153,0.3)]'
-                : 'bg-slate-900/60 border-slate-700/80 hover:border-pink-500/50 text-slate-200 hover:text-white'
+                ? 'bg-gradient-to-r from-pink-500/25 via-purple-500/25 to-cyan-500/25 text-white shadow-[0_0_15px_rgba(236,72,153,0.3)]'
+                : 'bg-slate-900/60 hover:bg-slate-800 text-slate-200 hover:text-white'
             }`}
           >
             <Sparkles className="w-3.5 h-3.5 text-pink-400" />
@@ -117,7 +117,7 @@ export const Header: React.FC<HeaderProps> = ({
             className="hidden md:flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer"
           >
             <span>엔터프라이즈</span>
-            <span className="bg-pink-950/70 text-pink-300 border border-pink-700/50 text-[10px] font-bold px-1.5 py-0.2 rounded">
+            <span className="bg-pink-950/70 text-pink-300 text-[10px] font-bold px-1.5 py-0.2 rounded">
               기업용
             </span>
           </button>
@@ -132,10 +132,10 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Project Workspace CTA button */}
           <button
             onClick={onOpenWorkspace}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border transition-all text-xs font-semibold ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all text-xs font-semibold cursor-pointer ${
               activeView === 'workspace'
-                ? 'bg-slate-800 border-cyan-500 text-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.2)]'
-                : 'bg-slate-900/80 border-slate-700/80 hover:border-slate-600 text-slate-200 hover:text-white'
+                ? 'bg-slate-800 text-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.2)]'
+                : 'bg-slate-900/80 hover:bg-slate-800 text-slate-200 hover:text-white'
             }`}
           >
             <FolderKanban className="w-3.5 h-3.5 text-cyan-400" />
@@ -163,8 +163,8 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
 
             {showProfileMenu && (
-              <div className="absolute right-0 mt-2 w-72 bg-[#0F1422] rounded-xl shadow-2xl border border-slate-800 p-4 z-50 text-xs text-slate-200 animate-fade-in">
-                <div className="border-b border-slate-800 pb-3 mb-3">
+              <div className="absolute right-0 mt-2 w-72 bg-[#0F1422] rounded-2xl shadow-2xl p-4 z-50 text-xs text-slate-200 animate-fade-in">
+                <div className="pb-3 mb-3 bg-[#13192B] -m-4 mb-3 p-4 rounded-t-2xl">
                   <div className="text-[10px] font-bold text-pink-400 mb-0.5">
                     {ENTERPRISE_CLIENT_PROFILE.enterpriseTier}
                   </div>
@@ -177,27 +177,27 @@ export const Header: React.FC<HeaderProps> = ({
                 </div>
 
                 <div className="space-y-2 text-slate-300 mb-3">
-                  <div className="flex justify-between py-1 border-b border-slate-800/60">
+                  <div className="flex justify-between py-1">
                     <span className="text-slate-400">잔여 정부지원 바우처</span>
                     <span className="font-bold text-cyan-300">{ENTERPRISE_CLIENT_PROFILE.voucherBalance}</span>
                   </div>
-                  <div className="flex justify-between py-1 border-b border-slate-800/60">
+                  <div className="flex justify-between py-1">
                     <span className="text-slate-400">전담 B2B PM</span>
                     <span className="font-semibold text-slate-100">{ENTERPRISE_CLIENT_PROFILE.accountManager}</span>
                   </div>
                 </div>
 
-                <div className="pt-2 border-t border-slate-800 space-y-1">
+                <div className="pt-2 space-y-1">
                   <button 
                     onClick={() => { setShowProfileMenu(false); onOpenWorkspace(); }}
-                    className="w-full text-left px-2 py-1.5 rounded hover:bg-slate-800 text-slate-200 flex items-center gap-2 font-medium"
+                    className="w-full text-left px-2 py-1.5 rounded-lg hover:bg-slate-800 text-slate-200 flex items-center gap-2 font-medium cursor-pointer"
                   >
                     <FolderKanban className="w-3.5 h-3.5 text-cyan-400" />
                     프로젝트 및 세금계산서 관리실
                   </button>
                   <button 
                     onClick={() => { setShowProfileMenu(false); onOpenRfp(); }}
-                    className="w-full text-left px-2 py-1.5 rounded hover:bg-slate-800 text-slate-200 flex items-center gap-2 font-medium"
+                    className="w-full text-left px-2 py-1.5 rounded-lg hover:bg-slate-800 text-slate-200 flex items-center gap-2 font-medium cursor-pointer"
                   >
                     <FileText className="w-3.5 h-3.5 text-pink-400" />
                     맞춤 견적요청서(RFP) 작성

@@ -90,10 +90,10 @@ export const ChatDrawer: React.FC<ChatDrawerProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-xs">
-      <div className="bg-[#0B0F19] w-full max-w-md h-full flex flex-col shadow-2xl border-l border-slate-800 animate-slide-left text-slate-100">
+    <div className="fixed inset-0 z-50 flex justify-end bg-black/70 backdrop-blur-xs">
+      <div className="bg-[#0B0F19] w-full max-w-md h-full flex flex-col shadow-2xl animate-slide-left text-slate-100">
         {/* Drawer Header */}
-        <div className="p-4 bg-[#05070D] border-b border-slate-800 flex items-center justify-between">
+        <div className="p-4 bg-[#05070D] flex items-center justify-between shadow-xs">
           <div className="flex items-center gap-3">
             <div className="relative">
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 via-indigo-600 to-cyan-500 text-white font-bold flex items-center justify-center text-xs shadow-md">
@@ -104,8 +104,8 @@ export const ChatDrawer: React.FC<ChatDrawerProps> = ({
             <div>
               <div className="flex items-center gap-1.5 font-bold text-sm text-white">
                 <span>{service.creator.name}</span>
-                <span className="bg-pink-500/20 text-pink-300 border border-pink-500/40 text-[10px] px-1 rounded font-black italic">
-                  prime
+                <span className="bg-pink-500/20 text-pink-300 text-[10px] px-1.5 py-0.5 rounded font-black italic">
+                  PRIME
                 </span>
               </div>
               <div className="text-[11px] text-slate-400 flex items-center gap-1">
@@ -124,7 +124,7 @@ export const ChatDrawer: React.FC<ChatDrawerProps> = ({
         </div>
 
         {/* Service Quick Bar */}
-        <div className="p-3 bg-[#0F1424] border-b border-slate-800 flex items-center justify-between text-xs">
+        <div className="p-3 bg-[#0F1424] flex items-center justify-between text-xs shadow-xs">
           <div className="truncate pr-2 text-slate-300">
             <span className="text-slate-500">문의 서비스:</span>{' '}
             <strong className="text-white">{service.title}</strong>
@@ -134,7 +134,7 @@ export const ChatDrawer: React.FC<ChatDrawerProps> = ({
               onClose();
               onOpenCheckoutFromChat();
             }}
-            className="shrink-0 px-2.5 py-1 bg-gradient-to-r from-pink-500 to-indigo-600 hover:opacity-90 text-white text-[11px] font-bold rounded transition-colors"
+            className="shrink-0 px-3 py-1.5 bg-gradient-to-r from-pink-500 to-indigo-600 hover:opacity-90 text-white text-[11px] font-bold rounded-lg transition-colors cursor-pointer shadow-sm"
           >
             계약서 작성
           </button>
@@ -153,7 +153,7 @@ export const ChatDrawer: React.FC<ChatDrawerProps> = ({
                   className={`max-w-[85%] rounded-2xl px-4 py-3 text-xs leading-relaxed ${
                     isMe
                       ? 'bg-gradient-to-r from-pink-500 to-indigo-600 text-white rounded-tr-none shadow-md shadow-pink-500/10'
-                      : 'bg-[#111728] border border-slate-800 text-slate-200 rounded-tl-none shadow-xs'
+                      : 'bg-[#111728] text-slate-200 rounded-tl-none shadow-sm'
                   }`}
                 >
                   {m.text}
@@ -166,7 +166,7 @@ export const ChatDrawer: React.FC<ChatDrawerProps> = ({
           })}
 
           {isTyping && (
-            <div className="flex items-center gap-1.5 text-xs text-slate-400 bg-[#111728] p-2.5 rounded-xl border border-slate-800 max-w-[120px]">
+            <div className="flex items-center gap-1.5 text-xs text-slate-400 bg-[#111728] p-2.5 rounded-xl max-w-[120px] shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-pink-400 animate-bounce" />
               <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-bounce [animation-delay:0.2s]" />
               <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-bounce [animation-delay:0.4s]" />
@@ -175,12 +175,12 @@ export const ChatDrawer: React.FC<ChatDrawerProps> = ({
         </div>
 
         {/* Quick Enterprise Questions */}
-        <div className="p-2.5 bg-[#0B0F19] border-t border-slate-800 overflow-x-auto no-scrollbar flex items-center gap-1.5">
+        <div className="p-2.5 bg-[#0B0F19] overflow-x-auto no-scrollbar flex items-center gap-1.5 shadow-xs">
           {quickQuestions.map((q, i) => (
             <button
               key={i}
               onClick={() => handleSendMessage(q)}
-              className="px-2.5 py-1 bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white text-[11px] font-medium rounded-full whitespace-nowrap transition-colors border border-slate-800 shrink-0"
+              className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white text-[11px] font-medium rounded-full whitespace-nowrap transition-colors shrink-0 cursor-pointer shadow-xs"
             >
               {q}
             </button>
@@ -188,11 +188,11 @@ export const ChatDrawer: React.FC<ChatDrawerProps> = ({
         </div>
 
         {/* Input Bar */}
-        <div className="p-3 bg-[#0B0F19] border-t border-slate-800">
+        <div className="p-3 bg-[#0B0F19] shadow-lg">
           <div className="flex items-center gap-2">
             <button
               onClick={() => handleSendMessage('📎 [첨부자료] 기업_브랜드_디자인_브리프_v1.pdf (첨부 완료)')}
-              className="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors"
+              className="p-2 text-slate-400 hover:text-white rounded-xl hover:bg-slate-850 transition-colors cursor-pointer"
               title="브리프 파일 첨부"
             >
               <Paperclip className="w-4 h-4" />
@@ -203,11 +203,11 @@ export const ChatDrawer: React.FC<ChatDrawerProps> = ({
               onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
               placeholder="궁금한 일정, 예산, 디자인 요구사항을 남겨주세요"
-              className="flex-1 text-xs p-2.5 bg-[#070A10] border border-slate-800 rounded-xl focus:outline-none focus:border-pink-500 focus:ring-1 focus:ring-pink-500 text-white placeholder-slate-500"
+              className="flex-1 text-xs p-2.5 bg-[#070A10] rounded-xl focus:outline-none focus:ring-1 focus:ring-pink-500 text-white placeholder-slate-500"
             />
             <button
               onClick={() => handleSendMessage()}
-              className="p-2.5 bg-gradient-to-r from-pink-500 via-indigo-600 to-cyan-500 hover:opacity-90 text-white rounded-xl transition-all shadow-md shadow-pink-500/20"
+              className="p-2.5 bg-gradient-to-r from-pink-500 via-indigo-600 to-cyan-500 hover:opacity-90 text-white rounded-xl transition-all shadow-md shadow-pink-500/20 cursor-pointer"
             >
               <Send className="w-4 h-4" />
             </button>

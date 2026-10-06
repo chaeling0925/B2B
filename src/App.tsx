@@ -7,6 +7,7 @@ import { ProjectPipelinePage } from './components/ProjectPipelinePage';
 import { RfpModal } from './components/RfpModal';
 import { ChatDrawer } from './components/ChatDrawer';
 import { OrderCheckoutModal } from './components/OrderCheckoutModal';
+import { InquiryQuoteModal } from './components/InquiryQuoteModal';
 import { Footer } from './components/Footer';
 import { MOCK_SERVICES, MOCK_CLIENT_PROJECTS, ENTERPRISE_CLIENT_PROFILE } from './data/mockData';
 import { ServiceItem, CategoryId, ClientProject, ServicePackage } from './types/marketplace';
@@ -26,6 +27,8 @@ export default function App() {
   const [isRfpOpen, setIsRfpOpen] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [chatService, setChatService] = useState<ServiceItem | null>(MOCK_SERVICES[0]);
+  const [isInquiryOpen, setIsInquiryOpen] = useState(false);
+  const [inquiryService, setInquiryService] = useState<ServiceItem | null>(MOCK_SERVICES[0]);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [checkoutService, setCheckoutService] = useState<ServiceItem | null>(null);
   const [checkoutPackage, setCheckoutPackage] = useState<ServicePackage | null>(null);
@@ -63,6 +66,11 @@ export default function App() {
   const handleOpenChat = (service?: ServiceItem) => {
     setChatService(service || selectedService || MOCK_SERVICES[0]);
     setIsChatOpen(true);
+  };
+
+  const handleOpenInquiry = (service: ServiceItem) => {
+    setInquiryService(service);
+    setIsInquiryOpen(true);
   };
 
   const handleOpenCheckout = (service: ServiceItem, selectedPackage: ServicePackage) => {
@@ -116,7 +124,7 @@ export default function App() {
     <div className="min-h-screen flex flex-col bg-[#070A10] text-slate-100 selection:bg-pink-500/30 selection:text-pink-200">
       {/* Toast */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 bg-[#0F1424] text-white px-5 py-3.5 rounded-xl shadow-2xl text-xs font-semibold flex items-center gap-2.5 border border-pink-500/50 shadow-[0_0_20px_rgba(236,72,153,0.3)] animate-fade-in">
+        <div className="fixed bottom-6 right-6 z-50 bg-[#0F1424] text-white px-5 py-3.5 rounded-2xl shadow-2xl text-xs font-semibold flex items-center gap-2.5 shadow-[0_0_30px_rgba(236,72,153,0.3)] animate-fade-in">
           <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
           <span>{toastMessage}</span>
         </div>
@@ -153,8 +161,10 @@ export default function App() {
             currentCategory={currentCategory}
             onSelectCategory={setCurrentCategory}
             onSelectService={handleSelectService}
+            onOpenInquiry={handleOpenInquiry}
             onOpenRfp={handleOpenPipeline}
             onOpenPipeline={handleOpenPipeline}
+            onOpenWorkspace={() => setActiveView('workspace')}
             bookmarks={bookmarks}
             onToggleBookmark={handleToggleBookmark}
             searchQuery={searchQuery}
@@ -184,6 +194,7 @@ export default function App() {
             service={selectedService}
             onBack={() => setActiveView('explore')}
             onOpenChat={(service) => handleOpenChat(service)}
+            onOpenInquiry={handleOpenInquiry}
             onOpenCheckout={handleOpenCheckout}
             isBookmarked={bookmarks.includes(selectedService.id)}
             onToggleBookmark={handleToggleBookmark}
@@ -206,9 +217,9 @@ export default function App() {
       <div className="fixed bottom-6 left-6 z-30 hidden sm:block">
         <button
           onClick={() => handleOpenChat(selectedService || MOCK_SERVICES[0])}
-          className="flex items-center gap-3 bg-[#0F1424]/90 backdrop-blur-md p-2.5 pr-4 rounded-full border border-slate-800 hover:border-pink-500/50 shadow-2xl transition-all duration-200 hover:-translate-y-0.5 group text-left shadow-[0_0_20px_rgba(0,0,0,0.5)] cursor-pointer"
+          className="flex items-center gap-3 bg-[#0F1424]/95 backdrop-blur-md p-2.5 pr-4 rounded-full shadow-2xl transition-all duration-200 hover:-translate-y-0.5 group text-left shadow-[0_0_25px_rgba(0,0,0,0.6)] cursor-pointer"
         >
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 via-indigo-600 to-cyan-500 text-white font-bold flex items-center justify-center text-xs shadow-md ring-2 ring-pink-500/30">
+          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 via-indigo-600 to-cyan-500 text-white font-bold flex items-center justify-center text-xs shadow-md">
             AI
           </div>
           <div>
@@ -246,6 +257,15 @@ export default function App() {
         service={checkoutService}
         selectedPackage={checkoutPackage}
         onOrderSuccess={handleOrderSuccess}
+      />
+
+      {/* Inquiry / Quote Modal matching screenshot */}
+      <InquiryQuoteModal
+        isOpen={isInquiryOpen}
+        onClose={() => setIsInquiryOpen(false)}
+        service={inquiryService}
+        onNavigateToDetail={handleSelectService}
+        onOpenCheckout={(serv) => handleOpenCheckout(serv, serv.packages.deluxe)}
       />
 
       {/* Corporate Footer */}

@@ -4,11 +4,11 @@ import { ContentripLogo } from './ContentripLogo';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-[#05070D] text-slate-400 border-t border-slate-800/80 text-xs py-12 px-4 sm:px-8">
+    <footer className="bg-[#05070D] text-slate-400 text-xs py-12 px-4 sm:px-8 mt-12">
       <div className="max-w-7xl mx-auto space-y-8">
         {/* Top Trust Features */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pb-8 border-b border-slate-800 text-slate-300">
-          <div className="flex items-start gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pb-6 text-slate-300">
+          <div className="flex items-start gap-3 bg-[#0B0F19] p-4 rounded-2xl">
             <ShieldCheck className="w-5 h-5 text-cyan-400 shrink-0 mt-0.5" />
             <div>
               <div className="font-bold text-white text-sm">100% 안전 에스크로</div>
@@ -16,7 +16,7 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex items-start gap-3">
+          <div className="flex items-start gap-3 bg-[#0B0F19] p-4 rounded-2xl">
             <FileCheck className="w-5 h-5 text-pink-400 shrink-0 mt-0.5" />
             <div>
               <div className="font-bold text-white text-sm">전자세금계산서 발행</div>
@@ -24,7 +24,7 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex items-start gap-3">
+          <div className="flex items-start gap-3 bg-[#0B0F19] p-4 rounded-2xl">
             <Building className="w-5 h-5 text-indigo-400 shrink-0 mt-0.5" />
             <div>
               <div className="font-bold text-white text-sm">전담 B2B 매니저 지원</div>
@@ -32,7 +32,7 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex items-start gap-3">
+          <div className="flex items-start gap-3 bg-[#0B0F19] p-4 rounded-2xl">
             <Phone className="w-5 h-5 text-teal-400 shrink-0 mt-0.5" />
             <div>
               <div className="font-bold text-white text-sm">기업 고객 전용 센터</div>
@@ -42,11 +42,11 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Legal & Corporate Info */}
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pt-2">
           <div className="space-y-2 leading-relaxed text-slate-400">
             <div className="flex items-center gap-2">
               <ContentripLogo size="sm" textSuffix="AI" />
-              <span className="text-cyan-400 text-[10px] font-semibold px-2 py-0.5 rounded bg-cyan-950/60 border border-cyan-800">
+              <span className="text-cyan-400 text-[10px] font-semibold px-2 py-0.5 rounded bg-cyan-950/60">
                 AI CREATIVE HUB
               </span>
             </div>
@@ -68,7 +68,7 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="pt-4 border-t border-slate-900 text-center text-slate-600 text-[11px]">
+        <div className="pt-4 text-center text-slate-600 text-[11px]">
           © 2026 CONTENTRIP Inc. All rights reserved. B2B AI Creative Network & Brand Marketplace.
         </div>
       </div>

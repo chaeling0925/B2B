@@ -217,12 +217,12 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
         TOP BREADCRUMB & HEADER
         ========================================================================
       */}
-      <div className="border-b border-slate-800/80 pb-6 pt-2">
+      <div className="pb-6 pt-2">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <button
               onClick={onBackToHome}
-              className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-cyan-300 transition-colors p-1.5 -ml-1.5 rounded-lg hover:bg-slate-800/60 cursor-pointer"
+              className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-cyan-300 transition-colors p-1.5 -ml-1.5 rounded-xl hover:bg-slate-800/60 cursor-pointer"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>마켓플레이스 홈</span>
@@ -241,11 +241,11 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
           <div className="flex items-center gap-3">
             <button
               onClick={onNavigateToWorkspace}
-              className="text-xs font-semibold text-slate-400 hover:text-white transition-colors flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 border border-slate-800 rounded-lg cursor-pointer"
+              className="text-xs font-semibold text-slate-300 hover:text-white transition-colors flex items-center gap-1.5 px-3.5 py-2 bg-slate-900 rounded-xl cursor-pointer shadow-xs"
             >
               <span>진행 중 프로젝트 ({feedbackHistory.length > 0 ? 1 : 0})</span>
             </button>
-            <div className="px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/40 text-cyan-300 text-[11px] font-bold flex items-center gap-1.5">
+            <div className="px-3 py-1.5 rounded-full bg-cyan-950/60 text-cyan-300 text-[11px] font-bold flex items-center gap-1.5 shadow-xs">
               <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
               <span>100% 안전 에스크로 & 전담 PM 배정</span>
             </div>
@@ -270,7 +270,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                 const nextIdx = (currentStageIndex + 1) % PIPELINE_STEPS.length;
                 setCurrentStage(PIPELINE_STEPS[nextIdx].key);
               }}
-              className="px-3.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 hover:border-pink-500/50 text-[11px] font-bold text-slate-300 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer"
+              className="px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-[11px] font-bold text-slate-300 hover:text-white transition-all flex items-center gap-1.5 cursor-pointer shadow-xs"
               title="다음 단계 미리보기"
             >
               <RefreshCw className="w-3.5 h-3.5 text-pink-400" />
@@ -285,7 +285,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
         PIPELINE STEPPER ROADMAP (8 STAGES INTERACTIVE STEPPER)
         ========================================================================
       */}
-      <section className="bg-[#0B0F1A] border border-slate-800 rounded-2xl p-4 sm:p-6 shadow-xl relative overflow-hidden">
+      <section className="bg-[#0B0F1A] rounded-3xl p-4 sm:p-6 shadow-2xl relative overflow-hidden">
         {/* Ambient Top Glow */}
         <div className="absolute top-0 right-1/4 w-80 h-32 bg-gradient-to-r from-pink-500/10 via-purple-500/10 to-cyan-500/10 blur-3xl pointer-events-none" />
 
@@ -293,9 +293,9 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
         <div className="overflow-x-auto py-4 scrollbar-thin">
           <div className="flex items-start min-w-[860px] justify-between relative pt-2">
             {/* Connecting Track Line (Aligned to center of circle: pt-2 (8px) + p-1 (4px) + 20px = 32px) */}
-            <div className="absolute left-8 right-8 top-8 h-0.5 bg-slate-800 z-0" />
+            <div className="absolute left-8 right-8 top-8 h-1 bg-slate-900 z-0 rounded-full" />
             <div
-              className="absolute left-8 top-8 h-0.5 bg-gradient-to-r from-[#FF2E93] via-[#8B5CF6] to-[#00F0FF] z-0 transition-all duration-500"
+              className="absolute left-8 top-8 h-1 bg-gradient-to-r from-[#FF2E93] via-[#8B5CF6] to-[#00F0FF] z-0 transition-all duration-500 rounded-full"
               style={{
                 width: `${(currentStageIndex / (PIPELINE_STEPS.length - 1)) * 92}%`
               }}
@@ -317,8 +317,8 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                       isCurrent
                         ? 'bg-gradient-to-br from-[#FF2E93] via-[#8B5CF6] to-[#00F0FF] text-white shadow-[0_0_25px_rgba(255,46,147,0.6)] scale-110 ring-2 ring-white/40'
                         : isPast
-                        ? 'bg-slate-800 text-cyan-400 border border-cyan-500/50 hover:bg-slate-700'
-                        : 'bg-[#080B12] text-slate-500 border border-slate-800 group-hover:border-slate-700 group-hover:text-slate-300'
+                        ? 'bg-slate-800 text-cyan-400 hover:bg-slate-750 shadow-xs'
+                        : 'bg-[#080B12] text-slate-500 group-hover:text-slate-300'
                     }`}
                   >
                     {isPast ? <Check className="w-4 h-4 stroke-[3]" /> : <Icon className="w-4 h-4" />}
@@ -351,9 +351,9 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
         </div>
 
         {/* Current Active Step Banner Summary */}
-        <div className="mt-5 pt-4 border-t border-slate-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+        <div className="mt-5 pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
           <div className="flex items-center gap-2">
-            <span className="px-2 py-0.5 rounded bg-pink-500/20 text-pink-300 font-bold text-[10px]">
+            <span className="px-2.5 py-1 rounded-lg bg-pink-500/20 text-pink-300 font-bold text-[10px]">
               STEP {currentStageIndex + 1} OF 8
             </span>
             <span className="font-bold text-white">
@@ -365,7 +365,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
             {currentStageIndex > 0 && (
               <button
                 onClick={goToPrevStage}
-                className="px-3 py-1 rounded-lg bg-slate-900 border border-slate-700 hover:border-slate-600 text-slate-300 hover:text-white transition-colors flex items-center gap-1 cursor-pointer text-xs"
+                className="px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white transition-colors flex items-center gap-1 cursor-pointer text-xs"
               >
                 <ArrowLeft className="w-3 h-3" />
                 <span>이전 단계</span>
@@ -374,7 +374,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
             {currentStageIndex < PIPELINE_STEPS.length - 1 && (
               <button
                 onClick={goToNextStage}
-                className="px-3.5 py-1 rounded-lg bg-gradient-to-r from-[#FF2E93] to-[#8B5CF6] text-white font-bold hover:opacity-95 transition-opacity flex items-center gap-1 cursor-pointer text-xs shadow-md shadow-pink-500/20"
+                className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#FF2E93] to-[#8B5CF6] text-white font-bold hover:opacity-95 transition-opacity flex items-center gap-1 cursor-pointer text-xs shadow-md shadow-pink-500/20"
               >
                 <span>다음 단계 ({PIPELINE_STEPS[currentStageIndex + 1].title})</span>
                 <ArrowRight className="w-3 h-3" />
@@ -390,8 +390,8 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
         ========================================================================
       */}
       {currentStage === 'REQUEST' && (
-        <section className="bg-[#0B0F1A] border border-slate-800 rounded-2xl p-6 sm:p-10 shadow-2xl space-y-8 animate-fade-in">
-          <div className="border-b border-slate-800 pb-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <section className="bg-[#0B0F1A] rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8 animate-fade-in">
+          <div className="pb-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
               <div className="text-xs font-black text-pink-400 uppercase tracking-wider flex items-center gap-1.5 mb-1">
                 <FileText className="w-4 h-4" />
@@ -406,26 +406,26 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
             </div>
 
             {/* Quick 1-click Preset Fill */}
-            <div className="flex flex-wrap items-center gap-2 bg-[#070A12] p-2 rounded-xl border border-slate-800">
+            <div className="flex flex-wrap items-center gap-2 bg-[#070A12] p-2 rounded-2xl shadow-xs">
               <span className="text-[11px] font-bold text-slate-400 px-2 flex items-center gap-1">
                 <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
                 추천 프리셋:
               </span>
               <button
                 onClick={() => applyPreset('lookbook')}
-                className="text-[11px] font-semibold px-2.5 py-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors cursor-pointer"
+                className="text-[11px] font-semibold px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors cursor-pointer"
               >
                 패션 룩북 화보
               </button>
               <button
                 onClick={() => applyPreset('tvc')}
-                className="text-[11px] font-semibold px-2.5 py-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors cursor-pointer"
+                className="text-[11px] font-semibold px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors cursor-pointer"
               >
                 시네마틱 TVC 영상
               </button>
               <button
                 onClick={() => applyPreset('concept')}
-                className="text-[11px] font-semibold px-2.5 py-1 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors cursor-pointer"
+                className="text-[11px] font-semibold px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors cursor-pointer"
               >
                 SF 콘셉트 아트
               </button>
@@ -443,7 +443,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                   type="text"
                   value={briefTitle}
                   onChange={(e) => setBriefTitle(e.target.value)}
-                  className="w-full px-4 py-3 bg-[#070A12] border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all"
+                  className="w-full px-4 py-3.5 bg-[#070A12] rounded-2xl text-sm text-white focus:outline-none focus:ring-1 focus:ring-cyan-400 transition-all shadow-xs"
                   placeholder="예: 2026 하이엔드 테크 브랜드 AI 시네마틱 숏폼 CF"
                 />
               </div>
@@ -456,7 +456,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                   <select
                     value={briefCategory}
                     onChange={(e) => setBriefCategory(e.target.value as CategoryId)}
-                    className="w-full px-4 py-3 bg-[#070A12] border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-cyan-400"
+                    className="w-full px-4 py-3.5 bg-[#070A12] rounded-2xl text-xs text-white focus:outline-none focus:ring-1 focus:ring-cyan-400 shadow-xs"
                   >
                     <option value="ai_video">AI 영상 & 상업용 CF</option>
                     <option value="ai_image">AI 이미지 & 룩북 화보</option>
@@ -474,7 +474,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                     type="text"
                     value={dueDate}
                     onChange={(e) => setDueDate(e.target.value)}
-                    className="w-full px-4 py-3 bg-[#070A12] border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-cyan-400"
+                    className="w-full px-4 py-3.5 bg-[#070A12] rounded-2xl text-xs text-white focus:outline-none focus:ring-1 focus:ring-cyan-400 shadow-xs"
                   />
                 </div>
               </div>
@@ -498,10 +498,10 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                             setBriefTools([...briefTools, tool]);
                           }
                         }}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                        className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                           isSelected
                             ? 'bg-gradient-to-r from-pink-500 to-indigo-600 text-white shadow-md shadow-pink-500/20'
-                            : 'bg-[#070A12] border border-slate-800 text-slate-400 hover:text-slate-200'
+                            : 'bg-[#070A12] text-slate-400 hover:text-slate-200'
                         }`}
                       >
                         {isSelected && '✓ '}
@@ -527,10 +527,10 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                       key={range}
                       type="button"
                       onClick={() => setBudgetRange(range)}
-                      className={`p-3 rounded-xl border text-xs font-bold text-center transition-all cursor-pointer ${
+                      className={`p-3.5 rounded-2xl text-xs font-bold text-center transition-all cursor-pointer shadow-xs ${
                         budgetRange === range
-                          ? 'bg-slate-900 border-cyan-400 text-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.2)]'
-                          : 'bg-[#070A12] border-slate-800 text-slate-400 hover:border-slate-700'
+                          ? 'bg-slate-900 text-cyan-300 shadow-[0_0_20px_rgba(6,182,212,0.25)]'
+                          : 'bg-[#070A12] text-slate-400 hover:bg-slate-900/60'
                       }`}
                     >
                       {range}
@@ -548,7 +548,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                   rows={4}
                   value={briefDetails}
                   onChange={(e) => setBriefDetails(e.target.value)}
-                  className="w-full px-4 py-3 bg-[#070A12] border border-slate-700 rounded-xl text-xs text-white leading-relaxed focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400"
+                  className="w-full px-4 py-3.5 bg-[#070A12] rounded-2xl text-xs text-white leading-relaxed focus:outline-none focus:ring-1 focus:ring-cyan-400 shadow-xs"
                   placeholder="원하시는 스타일, 타겟 고객, 필수 포함 요소(로고, 색상, 키프레임), 레퍼런스 영상 링크 등을 입력해주세요."
                 />
               </div>
@@ -557,7 +557,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
               <div className="pt-2">
                 <button
                   onClick={() => setCurrentStage('MATCH')}
-                  className="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-[#FF2E93] via-[#8B5CF6] to-[#00F0FF] text-white font-bold text-sm rounded-xl hover:opacity-95 transition-opacity shadow-[0_0_25px_rgba(255,46,147,0.4)] flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-[#FF2E93] via-[#8B5CF6] to-[#00F0FF] text-white font-bold text-sm rounded-2xl hover:opacity-95 transition-opacity shadow-[0_0_25px_rgba(255,46,147,0.4)] flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <span>의뢰서 등록 및 AI Creator 매칭 시작 (MATCH)</span>
                   <ArrowRight className="w-4 h-4" />
@@ -567,7 +567,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
 
             {/* Right 1 Col: B2B Guarantees Box */}
             <div className="space-y-4">
-              <div className="bg-[#070A12] border border-slate-800 rounded-xl p-5 space-y-4">
+              <div className="bg-[#070A12] rounded-2xl p-5 space-y-4 shadow-md">
                 <div className="text-xs font-bold text-cyan-300 flex items-center gap-1.5 uppercase tracking-wide">
                   <ShieldCheck className="w-4 h-4 text-cyan-400" />
                   <span>콘텐트립 B2B 안심 계약 보증</span>
@@ -593,18 +593,18 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
               </div>
 
               {/* Sample Visual Thumbnail Preview */}
-              <div className="bg-[#070A12] border border-slate-800 rounded-xl p-4 overflow-hidden">
+              <div className="bg-[#070A12] rounded-2xl p-4 overflow-hidden shadow-md">
                 <div className="text-[11px] font-bold text-slate-400 mb-2">
                   선호 비주얼 레퍼런스 스타일
                 </div>
-                <div className="aspect-16/9 rounded-lg overflow-hidden border border-slate-800 relative">
+                <div className="aspect-16/9 rounded-xl overflow-hidden relative">
                   <img
                     src="/src/assets/images/hero_organic_sculpture_1790729297506.jpg"
                     alt="유기체 레퍼런스"
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-black/70 backdrop-blur-md text-[10px] font-bold text-cyan-300">
+                  <div className="absolute bottom-2 left-2 px-2.5 py-1 rounded-lg bg-black/75 backdrop-blur-md text-[10px] font-bold text-cyan-300">
                     3D 파라메트릭 유기체 & 네온
                   </div>
                 </div>
@@ -620,8 +620,8 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
         ========================================================================
       */}
       {currentStage === 'MATCH' && (
-        <section className="bg-[#0B0F1A] border border-slate-800 rounded-2xl p-6 sm:p-10 shadow-2xl space-y-8 animate-fade-in">
-          <div className="border-b border-slate-800 pb-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <section className="bg-[#0B0F1A] rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8 animate-fade-in">
+          <div className="pb-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
               <div className="text-xs font-black text-cyan-400 uppercase tracking-wider flex items-center gap-1.5 mb-1">
                 <Users className="w-4 h-4" />
@@ -637,7 +637,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
 
             <div className="flex items-center gap-2">
               <span className="text-xs text-slate-400">정렬 기준:</span>
-              <span className="text-xs font-bold text-cyan-300 bg-cyan-950/60 px-2.5 py-1 rounded-md border border-cyan-800/50">
+              <span className="text-xs font-bold text-cyan-300 bg-cyan-950/60 px-3 py-1.5 rounded-xl shadow-xs">
                 매칭 적합도 순 (AI Match Score)
               </span>
             </div>
@@ -677,10 +677,10 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                 <div
                   key={card.id}
                   onClick={() => setSelectedCreatorId(card.id)}
-                  className={`rounded-2xl border transition-all duration-300 overflow-hidden cursor-pointer flex flex-col justify-between ${
+                  className={`rounded-3xl transition-all duration-300 overflow-hidden cursor-pointer flex flex-col justify-between shadow-md ${
                     isSelected
-                      ? 'bg-slate-900 border-pink-500 shadow-[0_0_25px_rgba(255,46,147,0.25)] ring-1 ring-pink-500'
-                      : 'bg-[#070A12] border-slate-800 hover:border-slate-700 hover:bg-slate-900/60'
+                      ? 'bg-slate-900 shadow-[0_0_30px_rgba(255,46,147,0.3)] ring-2 ring-pink-500'
+                      : 'bg-[#070A12] hover:bg-slate-900/60'
                   }`}
                 >
                   <div>
@@ -692,10 +692,10 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                         referrerPolicy="no-referrer"
                         className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                       />
-                      <div className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md border border-cyan-400/50 text-cyan-300 text-[10px] font-black tracking-wider">
+                      <div className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md text-cyan-300 text-[10px] font-black tracking-wider shadow-xs">
                         {card.matchRate}
                       </div>
-                      <div className="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-black/70 backdrop-blur-md text-[10px] font-bold text-slate-300">
+                      <div className="absolute bottom-2 left-2 px-2.5 py-1 rounded-lg bg-black/75 backdrop-blur-md text-[10px] font-bold text-slate-300">
                         완료 {card.creator.completedProjects}건 · 만족도 {card.creator.satisfactionRate}%
                       </div>
                     </div>
@@ -707,12 +707,12 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                           src={card.creator.avatar}
                           alt={card.creator.name}
                           referrerPolicy="no-referrer"
-                          className="w-10 h-10 rounded-full object-cover border border-slate-700"
+                          className="w-10 h-10 rounded-full object-cover shadow-xs"
                         />
                         <div>
                           <div className="text-xs font-bold text-white flex items-center gap-1.5">
                             <span>{card.creator.name}</span>
-                            <span className="text-[10px] font-semibold text-pink-400 bg-pink-950/60 px-1.5 py-0.2 rounded border border-pink-800/40">
+                            <span className="text-[10px] font-semibold text-pink-400 bg-pink-950/60 px-2 py-0.5 rounded-md">
                               {card.creator.grade}
                             </span>
                           </div>
@@ -722,7 +722,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                         </div>
                       </div>
 
-                      <div className="text-xs text-slate-300 leading-relaxed bg-[#0B0F18] p-3 rounded-xl border border-slate-800/80">
+                      <div className="text-xs text-slate-300 leading-relaxed bg-[#0B0F18] p-3.5 rounded-2xl shadow-xs">
                         <strong className="text-cyan-400 text-[11px] block mb-1">
                           [추천 사유]
                         </strong>
@@ -734,7 +734,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                         {card.creator.primaryTools.slice(0, 3).map((tool) => (
                           <span
                             key={tool}
-                            className="text-[10px] font-medium px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/60"
+                            className="text-[10px] font-medium px-2.5 py-1 rounded-lg bg-slate-800/80 text-slate-300 shadow-xs"
                           >
                             {tool}
                           </span>
@@ -744,7 +744,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                   </div>
 
                   {/* Card Bottom CTA */}
-                  <div className="p-5 pt-0 border-t border-slate-800/60 flex items-center justify-between mt-3">
+                  <div className="p-5 pt-0 flex items-center justify-between mt-3">
                     <div>
                       <span className="text-[10px] text-slate-400 block">예상 견적</span>
                       <span className="text-xs font-black text-white">{card.startingPrice}~</span>
@@ -756,7 +756,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                           e.stopPropagation();
                           onOpenChat(card.creator.name);
                         }}
-                        className="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] font-semibold transition-colors"
+                        className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] font-semibold transition-colors cursor-pointer"
                       >
                         1:1 문의
                       </button>
@@ -765,7 +765,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                           setSelectedCreatorId(card.id);
                           setCurrentStage('PROPOSAL');
                         }}
-                        className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-pink-500 to-indigo-600 text-white text-[11px] font-bold shadow-sm"
+                        className="px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-pink-500 to-indigo-600 text-white text-[11px] font-bold shadow-sm cursor-pointer"
                       >
                         제안서 보기
                       </button>
@@ -779,7 +779,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
           <div className="flex justify-end pt-4">
             <button
               onClick={() => setCurrentStage('PROPOSAL')}
-              className="px-8 py-3.5 bg-gradient-to-r from-[#FF2E93] via-[#8B5CF6] to-[#00F0FF] text-white font-bold text-sm rounded-xl hover:opacity-95 transition-opacity shadow-lg shadow-pink-500/20 flex items-center gap-2 cursor-pointer"
+              className="px-8 py-4 bg-gradient-to-r from-[#FF2E93] via-[#8B5CF6] to-[#00F0FF] text-white font-bold text-sm rounded-2xl hover:opacity-95 transition-opacity shadow-lg shadow-pink-500/20 flex items-center gap-2 cursor-pointer"
             >
               <span>크리에이터 제안서 확인 단계로 이동 (PROPOSAL)</span>
               <ArrowRight className="w-4 h-4" />
@@ -794,8 +794,8 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
         ========================================================================
       */}
       {currentStage === 'PROPOSAL' && (
-        <section className="bg-[#0B0F1A] border border-slate-800 rounded-2xl p-6 sm:p-10 shadow-2xl space-y-8 animate-fade-in">
-          <div className="border-b border-slate-800 pb-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <section className="bg-[#0B0F1A] rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8 animate-fade-in">
+          <div className="pb-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
               <div className="text-xs font-black text-purple-400 uppercase tracking-wider flex items-center gap-1.5 mb-1">
                 <Sliders className="w-4 h-4" />
@@ -809,7 +809,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
               </p>
             </div>
 
-            <div className="bg-[#070A12] px-3.5 py-2 rounded-xl border border-slate-800 flex items-center gap-2">
+            <div className="bg-[#070A12] px-4 py-2.5 rounded-2xl shadow-xs flex items-center gap-2">
               <span className="text-[11px] text-slate-400">선택 크리에이터:</span>
               <span className="text-xs font-bold text-pink-300">
                 {selectedCreatorId === 'synth' ? '신스 스튜디오 (Synth AI Cinema Lab)' : selectedCreatorId === 'vogue' ? '뉴럴 보그 (Neural Vogue AI)' : '에테르 아카이브'}
@@ -822,10 +822,10 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
             {/* STANDARD */}
             <div
               onClick={() => setSelectedPackageTier('standard')}
-              className={`rounded-2xl border p-6 flex flex-col justify-between transition-all cursor-pointer ${
+              className={`rounded-3xl p-6 flex flex-col justify-between transition-all cursor-pointer shadow-md ${
                 selectedPackageTier === 'standard'
-                  ? 'bg-slate-900 border-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.3)] ring-1 ring-cyan-400'
-                  : 'bg-[#070A12] border-slate-800 hover:border-slate-700'
+                  ? 'bg-slate-900 shadow-[0_0_25px_rgba(6,182,212,0.3)] ring-2 ring-cyan-400'
+                  : 'bg-[#070A12] hover:bg-slate-900/60'
               }`}
             >
               <div className="space-y-4">
@@ -833,7 +833,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                   <span className="text-xs font-black uppercase tracking-wider text-slate-400">
                     BASIC TIER
                   </span>
-                  <span className="text-[11px] font-bold text-cyan-300 px-2 py-0.5 rounded bg-cyan-950/60 border border-cyan-800/40">
+                  <span className="text-[11px] font-bold text-cyan-300 px-2.5 py-1 rounded-lg bg-cyan-950/60 shadow-xs">
                     단일 컷 제작
                   </span>
                 </div>
@@ -848,7 +848,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                   <span className="text-[11px] text-slate-400">부액 VAT 별도 · 세금계산서 발행</span>
                 </div>
 
-                <div className="border-t border-slate-800 pt-4 space-y-2 text-xs text-slate-300">
+                <div className="pt-4 space-y-2 text-xs text-slate-300">
                   <div className="flex items-center justify-between py-1">
                     <span className="text-slate-400">제공 개수</span>
                     <strong className="text-white font-bold">1개</strong>
@@ -875,7 +875,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
               <div className="pt-6">
                 <button
                   type="button"
-                  className={`w-full py-2.5 rounded-xl text-xs font-bold transition-all ${
+                  className={`w-full py-3 rounded-2xl text-xs font-bold transition-all cursor-pointer ${
                     selectedPackageTier === 'standard'
                       ? 'bg-cyan-500 text-slate-950 shadow-md'
                       : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
@@ -889,13 +889,13 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
             {/* DELUXE (Recommended) */}
             <div
               onClick={() => setSelectedPackageTier('deluxe')}
-              className={`rounded-2xl border p-6 flex flex-col justify-between transition-all relative cursor-pointer ${
+              className={`rounded-3xl p-6 flex flex-col justify-between transition-all relative cursor-pointer shadow-md ${
                 selectedPackageTier === 'deluxe'
-                  ? 'bg-slate-900 border-pink-500 shadow-[0_0_30px_rgba(255,46,147,0.35)] ring-2 ring-pink-500'
-                  : 'bg-[#070A12] border-pink-500/50 hover:border-pink-400'
+                  ? 'bg-slate-900 shadow-[0_0_35px_rgba(255,46,147,0.4)] ring-2 ring-pink-500'
+                  : 'bg-[#070A12] hover:bg-slate-900/60'
               }`}
             >
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-gradient-to-r from-pink-500 to-indigo-600 text-white text-[10px] font-black tracking-wider uppercase shadow-md">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-gradient-to-r from-pink-500 to-indigo-600 text-white text-[10px] font-black tracking-wider uppercase shadow-md">
                 ★ 의뢰자 78% 선택 (추천)
               </div>
 
@@ -904,7 +904,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                   <span className="text-xs font-black uppercase tracking-wider text-pink-400">
                     PROFESSIONAL TIER
                   </span>
-                  <span className="text-[11px] font-bold text-pink-300 px-2 py-0.5 rounded bg-pink-950/60 border border-pink-800/40">
+                  <span className="text-[11px] font-bold text-pink-300 px-2.5 py-1 rounded-lg bg-pink-950/60 shadow-xs">
                     숏폼 & 종편 포함
                   </span>
                 </div>
@@ -921,7 +921,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                   <span className="text-[11px] text-slate-400">부액 VAT 별도 · 세금계산서 발행</span>
                 </div>
 
-                <div className="border-t border-slate-800 pt-4 space-y-2 text-xs text-slate-300">
+                <div className="pt-4 space-y-2 text-xs text-slate-300">
                   <div className="flex items-center justify-between py-1">
                     <span className="text-slate-400">제공 개수</span>
                     <strong className="text-pink-300 font-bold">1개</strong>
@@ -948,7 +948,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
               <div className="pt-6">
                 <button
                   type="button"
-                  className={`w-full py-2.5 rounded-xl text-xs font-bold transition-all ${
+                  className={`w-full py-3 rounded-2xl text-xs font-bold transition-all cursor-pointer ${
                     selectedPackageTier === 'deluxe'
                       ? 'bg-gradient-to-r from-pink-500 to-indigo-600 text-white shadow-md shadow-pink-500/30'
                       : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
@@ -962,10 +962,10 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
             {/* PREMIUM */}
             <div
               onClick={() => setSelectedPackageTier('premium')}
-              className={`rounded-2xl border p-6 flex flex-col justify-between transition-all cursor-pointer ${
+              className={`rounded-3xl p-6 flex flex-col justify-between transition-all cursor-pointer shadow-md ${
                 selectedPackageTier === 'premium'
-                  ? 'bg-slate-900 border-purple-400 shadow-[0_0_20px_rgba(168,85,247,0.3)] ring-1 ring-purple-400'
-                  : 'bg-[#070A12] border-slate-800 hover:border-slate-700'
+                  ? 'bg-slate-900 shadow-[0_0_25px_rgba(168,85,247,0.35)] ring-2 ring-purple-400'
+                  : 'bg-[#070A12] hover:bg-slate-900/60'
               }`}
             >
               <div className="space-y-4">
@@ -973,7 +973,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                   <span className="text-xs font-black uppercase tracking-wider text-purple-400">
                     ENTERPRISE TIER
                   </span>
-                  <span className="text-[11px] font-bold text-purple-300 px-2 py-0.5 rounded bg-purple-950/60 border border-purple-800/40">
+                  <span className="text-[11px] font-bold text-purple-300 px-2.5 py-1 rounded-lg bg-purple-950/60 shadow-xs">
                     총괄 제작
                   </span>
                 </div>
@@ -988,7 +988,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                   <span className="text-[11px] text-slate-400">부액 VAT 별도 · 세금계산서 발행</span>
                 </div>
 
-                <div className="border-t border-slate-800 pt-4 space-y-2 text-xs text-slate-300">
+                <div className="pt-4 space-y-2 text-xs text-slate-300">
                   <div className="flex items-center justify-between py-1">
                     <span className="text-slate-400">제공 개수</span>
                     <strong className="text-purple-300 font-bold">1개</strong>
@@ -1015,7 +1015,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
               <div className="pt-6">
                 <button
                   type="button"
-                  className={`w-full py-2.5 rounded-xl text-xs font-bold transition-all ${
+                  className={`w-full py-3 rounded-2xl text-xs font-bold transition-all cursor-pointer ${
                     selectedPackageTier === 'premium'
                       ? 'bg-purple-600 text-white shadow-md'
                       : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
@@ -1038,7 +1038,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
 
             <button
               onClick={() => setCurrentStage('SELECT')}
-              className="px-8 py-3.5 bg-gradient-to-r from-[#FF2E93] via-[#8B5CF6] to-[#00F0FF] text-white font-bold text-sm rounded-xl hover:opacity-95 transition-opacity shadow-lg shadow-pink-500/20 flex items-center gap-2 cursor-pointer"
+              className="px-8 py-4 bg-gradient-to-r from-[#FF2E93] via-[#8B5CF6] to-[#00F0FF] text-white font-bold text-sm rounded-2xl hover:opacity-95 transition-opacity shadow-lg shadow-pink-500/20 flex items-center gap-2 cursor-pointer"
             >
               <span>{selectedPackageTier.toUpperCase()} 패키지로 크리에이터 최종 선정 (SELECT)</span>
               <ArrowRight className="w-4 h-4" />
@@ -1053,8 +1053,8 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
         ========================================================================
       */}
       {currentStage === 'SELECT' && (
-        <section className="bg-[#0B0F1A] border border-slate-800 rounded-2xl p-6 sm:p-10 shadow-2xl space-y-8 animate-fade-in">
-          <div className="border-b border-slate-800 pb-5">
+        <section className="bg-[#0B0F1A] rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8 animate-fade-in">
+          <div className="pb-5">
             <div className="text-xs font-black text-pink-400 uppercase tracking-wider flex items-center gap-1.5 mb-1">
               <CheckCircle2 className="w-4 h-4" />
               <span>STAGE 4: SELECT</span>
@@ -1069,10 +1069,10 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
 
           {/* Contract Overview Card */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div className="lg:col-span-2 bg-[#070A12] border border-slate-800 rounded-2xl p-6 space-y-6">
-              <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+            <div className="lg:col-span-2 bg-[#070A12] rounded-3xl p-6 space-y-6 shadow-md">
+              <div className="flex items-center justify-between pb-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 to-indigo-600 flex items-center justify-center text-white font-bold text-sm">
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-pink-500 to-indigo-600 flex items-center justify-center text-white font-bold text-sm shadow-xs">
                     AI
                   </div>
                   <div>
@@ -1095,7 +1095,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
 
               {/* Terms & Guarantees */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-                <div className="bg-[#0B0F18] p-3.5 rounded-xl border border-slate-800">
+                <div className="bg-[#0B0F18] p-4 rounded-2xl shadow-xs">
                   <div className="text-slate-400 text-[11px] mb-1">총 계약 금액 (VAT 별도)</div>
                   <div className="font-display text-2xl text-white">
                     {selectedPackageTier === 'standard' ? '550,000원' : selectedPackageTier === 'deluxe' ? '1,100,000원' : '2,200,000원'}
@@ -1103,7 +1103,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                   <div className="text-[10px] text-cyan-300 mt-1">에스크로 예치 보관</div>
                 </div>
 
-                <div className="bg-[#0B0F18] p-3.5 rounded-xl border border-slate-800">
+                <div className="bg-[#0B0F18] p-4 rounded-2xl shadow-xs">
                   <div className="text-slate-400 text-[11px] mb-1">약정 시안 제출일</div>
                   <div className="font-display text-2xl text-white">2영업일 이내</div>
                   <div className="text-[10px] text-slate-400 mt-1">
@@ -1129,9 +1129,9 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
             </div>
 
             {/* Right: Kickoff Action */}
-            <div className="bg-gradient-to-b from-slate-900 to-[#0B0F1A] border border-pink-500/40 rounded-2xl p-6 flex flex-col justify-between space-y-6">
+            <div className="bg-gradient-to-b from-slate-900 to-[#0B0F1A] rounded-3xl p-6 flex flex-col justify-between space-y-6 shadow-xl">
               <div>
-                <span className="px-2.5 py-0.5 rounded-full bg-pink-500/20 text-pink-300 text-[10px] font-bold">
+                <span className="px-3 py-1 rounded-full bg-pink-500/20 text-pink-300 text-[10px] font-bold">
                   STEP CONFIRMATION
                 </span>
                 <h3 className="text-lg font-bold text-white mt-3">
@@ -1144,7 +1144,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
 
               <button
                 onClick={() => setCurrentStage('CONCEPT')}
-                className="w-full py-4 bg-gradient-to-r from-[#FF2E93] via-[#8B5CF6] to-[#00F0FF] text-white font-bold text-sm rounded-xl shadow-lg shadow-pink-500/30 hover:opacity-95 transition-opacity flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-4 bg-gradient-to-r from-[#FF2E93] via-[#8B5CF6] to-[#00F0FF] text-white font-bold text-sm rounded-2xl shadow-lg shadow-pink-500/30 hover:opacity-95 transition-opacity flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>크리에이터 최종 선정 및 시안 제작 요청 (CONCEPT)</span>
                 <ArrowRight className="w-4 h-4" />
@@ -1160,8 +1160,8 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
         ========================================================================
       */}
       {currentStage === 'CONCEPT' && (
-        <section className="bg-[#0B0F1A] border border-slate-800 rounded-2xl p-6 sm:p-10 shadow-2xl space-y-8 animate-fade-in">
-          <div className="border-b border-slate-800 pb-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <section className="bg-[#0B0F1A] rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8 animate-fade-in">
+          <div className="pb-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
               <div className="text-xs font-black text-pink-400 uppercase tracking-wider flex items-center gap-1.5 mb-1">
                 <Palette className="w-4 h-4" />
@@ -1176,7 +1176,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="text-xs font-bold text-cyan-300 bg-cyan-950/60 border border-cyan-800/40 px-3 py-1.5 rounded-lg">
+              <span className="text-xs font-bold text-cyan-300 bg-cyan-950/60 px-3.5 py-2 rounded-xl shadow-xs">
                 1차 시안 납품 완료 (검토 대기 중)
               </span>
             </div>
@@ -1188,10 +1188,10 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
               <div
                 key={concept.id}
                 onClick={() => setSelectedDraftId(concept.id as any)}
-                className={`rounded-2xl border overflow-hidden flex flex-col justify-between transition-all duration-300 cursor-pointer ${
+                className={`rounded-3xl overflow-hidden flex flex-col justify-between transition-all duration-300 cursor-pointer shadow-md ${
                   selectedDraftId === concept.id
-                    ? 'bg-slate-900 border-pink-500 shadow-[0_0_25px_rgba(255,46,147,0.3)] ring-1 ring-pink-500'
-                    : 'bg-[#070A12] border-slate-800 hover:border-slate-700'
+                    ? 'bg-slate-900 shadow-[0_0_30px_rgba(255,46,147,0.35)] ring-2 ring-pink-500'
+                    : 'bg-[#070A12] hover:bg-slate-900/60'
                 }`}
               >
                 <div>
@@ -1202,11 +1202,11 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                       referrerPolicy="no-referrer"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-md bg-black/80 backdrop-blur-md text-[10px] font-bold text-white border border-white/10">
+                    <div className="absolute top-2.5 left-2.5 px-2.5 py-1 rounded-lg bg-black/80 backdrop-blur-md text-[10px] font-bold text-white shadow-xs">
                       CONCEPT #{idx + 1}
                     </div>
                     {selectedDraftId === concept.id && (
-                      <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-md bg-pink-500 text-[10px] font-bold text-white">
+                      <div className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-lg bg-pink-500 text-[10px] font-bold text-white shadow-sm">
                         선택됨
                       </div>
                     )}
@@ -1220,7 +1220,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                       {concept.summary}
                     </p>
 
-                    <div className="border-t border-slate-800/80 pt-3 text-[11px] space-y-1.5">
+                    <div className="pt-3 text-[11px] space-y-1.5">
                       <div className="text-slate-400">
                         <span className="text-slate-500">사용 파이프라인:</span> {concept.tools}
                       </div>
@@ -1229,7 +1229,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                         {concept.palette.map((color) => (
                           <span
                             key={color}
-                            className="w-3.5 h-3.5 rounded-full border border-white/20"
+                            className="w-3.5 h-3.5 rounded-full shadow-xs"
                             style={{ backgroundColor: color }}
                           />
                         ))}
@@ -1244,7 +1244,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                       setSelectedDraftId(concept.id as any);
                       setCurrentStage('REVIEW');
                     }}
-                    className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-pink-600 text-white text-xs font-bold transition-colors cursor-pointer flex items-center justify-center gap-1.5"
+                    className="w-full py-3 rounded-2xl bg-slate-800 hover:bg-pink-600 text-white text-xs font-bold transition-colors cursor-pointer flex items-center justify-center gap-1.5 shadow-xs"
                   >
                     <span>이 시안으로 피드백 작성하기</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -1265,7 +1265,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
 
             <button
               onClick={() => setCurrentStage('REVIEW')}
-              className="px-8 py-3.5 bg-gradient-to-r from-[#FF2E93] via-[#8B5CF6] to-[#00F0FF] text-white font-bold text-sm rounded-xl hover:opacity-95 transition-opacity shadow-lg shadow-pink-500/20 flex items-center gap-2 cursor-pointer"
+              className="px-8 py-4 bg-gradient-to-r from-[#FF2E93] via-[#8B5CF6] to-[#00F0FF] text-white font-bold text-sm rounded-2xl hover:opacity-95 transition-opacity shadow-lg shadow-pink-500/20 flex items-center gap-2 cursor-pointer"
             >
               <span>시안 피드백 및 수정 요청 단계로 이동 (FEEDBACK)</span>
               <ArrowRight className="w-4 h-4" />
@@ -1280,8 +1280,8 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
         ========================================================================
       */}
       {currentStage === 'REVIEW' && (
-        <section className="bg-[#0B0F1A] border border-slate-800 rounded-2xl p-6 sm:p-10 shadow-2xl space-y-8 animate-fade-in">
-          <div className="border-b border-slate-800 pb-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <section className="bg-[#0B0F1A] rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8 animate-fade-in">
+          <div className="pb-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
               <div className="text-xs font-black text-cyan-400 uppercase tracking-wider flex items-center gap-1.5 mb-1">
                 <MessageSquare className="w-4 h-4" />
@@ -1296,7 +1296,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
             </div>
 
             <div className="flex items-center gap-2">
-              <span className="text-xs font-bold text-pink-300 bg-pink-950/60 border border-pink-800/40 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+              <span className="text-xs font-bold text-pink-300 bg-pink-950/60 px-3.5 py-2 rounded-xl flex items-center gap-1.5 shadow-xs">
                 <RefreshCw className="w-3.5 h-3.5 text-pink-400" />
                 <span>무상 수정 가능 횟수: <strong>{revisionsRemaining}회</strong> 남음</span>
               </span>
@@ -1315,7 +1315,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                     <button
                       key={c.id}
                       onClick={() => setSelectedDraftId(c.id as any)}
-                      className={`px-3 py-1 rounded-md text-xs font-bold transition-all cursor-pointer ${
+                      className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer shadow-xs ${
                         selectedDraftId === c.id
                           ? 'bg-gradient-to-r from-pink-500 to-indigo-600 text-white'
                           : 'bg-slate-800 text-slate-400 hover:text-white'
@@ -1331,7 +1331,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
               {(() => {
                 const currentDraft = conceptsData.find((d) => d.id === selectedDraftId) || conceptsData[1];
                 return (
-                  <div className="rounded-2xl border border-slate-800 overflow-hidden bg-slate-950 relative group">
+                  <div className="rounded-3xl overflow-hidden bg-slate-950 relative group shadow-2xl">
                     <img
                       src={currentDraft.image}
                       alt={currentDraft.title}
@@ -1340,17 +1340,17 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                     />
 
                     {/* Interactive Feedback Pin Stamp */}
-                    <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-2 bg-[#0B0F1A]/90 backdrop-blur-md px-3 py-1.5 rounded-full border border-pink-500 shadow-xl text-white text-[11px] font-bold animate-pulse">
-                      <span className="w-2 h-2 rounded-full bg-pink-500" />
+                    <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-2 bg-[#0B0F1A]/90 backdrop-blur-md px-3.5 py-2 rounded-full shadow-2xl text-white text-[11px] font-bold animate-pulse">
+                      <span className="w-2.5 h-2.5 rounded-full bg-pink-500 shadow-[0_0_10px_#ec4899]" />
                       <span>피드백 반영 위치 #1 (네온 유기체 발광 곡면)</span>
                     </div>
 
-                    <div className="p-4 bg-[#070A12] border-t border-slate-800/80 flex items-center justify-between">
+                    <div className="p-4 bg-[#070A12] flex items-center justify-between">
                       <div>
                         <div className="text-xs font-bold text-white">{currentDraft.title}</div>
                         <div className="text-[11px] text-slate-400">{currentDraft.notes}</div>
                       </div>
-                      <span className="text-[10px] font-mono text-cyan-300 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-800/40">
+                      <span className="text-[10px] font-mono text-cyan-300 bg-cyan-950/60 px-2.5 py-1 rounded-lg">
                         {currentDraft.tools}
                       </span>
                     </div>
@@ -1361,7 +1361,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
 
             {/* Right 5 Cols: Feedback Panel & History */}
             <div className="lg:col-span-5 space-y-5">
-              <div className="bg-[#070A12] border border-slate-800 rounded-2xl p-5 space-y-4">
+              <div className="bg-[#070A12] rounded-3xl p-5 space-y-4 shadow-md">
                 <div className="text-xs font-bold text-white flex items-center justify-between">
                   <span>시안 수정 요청 작성</span>
                   <span className="text-[10px] text-slate-400">잔여: {revisionsRemaining}회</span>
@@ -1381,7 +1381,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                         key={tag}
                         type="button"
                         onClick={() => setFeedbackInput((prev) => (prev ? `${prev}, ${tag}` : tag))}
-                        className="text-[10px] font-semibold px-2 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors cursor-pointer"
+                        className="text-[10px] font-semibold px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors cursor-pointer"
                       >
                         +{tag}
                       </button>
@@ -1395,13 +1395,13 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                     value={feedbackInput}
                     onChange={(e) => setFeedbackInput(e.target.value)}
                     placeholder="수정 요청 사항을 상세히 남겨주세요. (예: 시안 B의 상단 곡면을 조금 더 투명하게 처리하고 콘텐트립 시그니처 핑크 림라이트를 보강해주세요)"
-                    className="w-full px-3.5 py-2.5 bg-[#0B0F18] border border-slate-700 rounded-xl text-xs text-white leading-relaxed focus:outline-none focus:border-cyan-400"
+                    className="w-full px-3.5 py-2.5 bg-[#0B0F18] rounded-2xl text-xs text-white leading-relaxed focus:outline-none focus:ring-1 focus:ring-cyan-400 shadow-xs"
                   />
 
                   <button
                     type="submit"
                     disabled={!feedbackInput.trim() || revisionsRemaining <= 0}
-                    className="w-full py-2.5 rounded-xl bg-gradient-to-r from-pink-500 to-indigo-600 hover:opacity-90 disabled:opacity-40 text-white text-xs font-bold transition-opacity cursor-pointer flex items-center justify-center gap-1.5 shadow-md"
+                    className="w-full py-3 rounded-2xl bg-gradient-to-r from-pink-500 to-indigo-600 hover:opacity-90 disabled:opacity-40 text-white text-xs font-bold transition-opacity cursor-pointer flex items-center justify-center gap-1.5 shadow-md"
                   >
                     <Send className="w-3.5 h-3.5" />
                     <span>피드백 전송 (수정 1회 차감)</span>
@@ -1409,13 +1409,13 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                 </form>
 
                 {/* History Log */}
-                <div className="border-t border-slate-800 pt-3 space-y-2">
+                <div className="pt-3 space-y-2">
                   <div className="text-[11px] font-bold text-slate-400">피드백 이력</div>
                   <div className="space-y-2 max-h-40 overflow-y-auto pr-1">
                     {feedbackHistory.map((fb) => (
                       <div
                         key={fb.id}
-                        className="p-2.5 rounded-lg bg-[#0B0F18] border border-slate-800/80 text-[11px] space-y-1"
+                        className="p-3 rounded-xl bg-[#0B0F18] text-[11px] space-y-1 shadow-xs"
                       >
                         <div className="flex items-center justify-between text-[10px]">
                           <span className="text-slate-400">{fb.time}</span>
@@ -1429,14 +1429,14 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
               </div>
 
               {/* Ready to approve CTA */}
-              <div className="bg-gradient-to-r from-pink-950/40 to-indigo-950/40 border border-pink-500/40 rounded-2xl p-4 flex items-center justify-between gap-3">
+              <div className="bg-gradient-to-r from-pink-950/40 to-indigo-950/40 rounded-3xl p-5 flex items-center justify-between gap-3 shadow-md">
                 <div>
                   <div className="text-xs font-bold text-white">시안 수정이 만족스러우신가요?</div>
                   <div className="text-[10px] text-slate-400">최종 결과물을 확인하고 승인 단계로 넘어갑니다.</div>
                 </div>
                 <button
                   onClick={() => setCurrentStage('APPROVAL')}
-                  className="px-4 py-2 bg-gradient-to-r from-pink-500 to-cyan-500 text-white font-bold text-xs rounded-lg hover:opacity-90 transition-opacity cursor-pointer shrink-0"
+                  className="px-4 py-2.5 bg-gradient-to-r from-pink-500 to-cyan-500 text-white font-bold text-xs rounded-xl hover:opacity-90 transition-opacity cursor-pointer shrink-0 shadow-sm"
                 >
                   승인 단계로 이동 →
                 </button>
@@ -1452,8 +1452,8 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
         ========================================================================
       */}
       {currentStage === 'APPROVAL' && (
-        <section className="bg-[#0B0F1A] border border-slate-800 rounded-2xl p-6 sm:p-10 shadow-2xl space-y-8 animate-fade-in">
-          <div className="border-b border-slate-800 pb-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <section className="bg-[#0B0F1A] rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8 animate-fade-in">
+          <div className="pb-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
               <div className="text-xs font-black text-cyan-400 uppercase tracking-wider flex items-center gap-1.5 mb-1">
                 <ShieldCheck className="w-4 h-4" />
@@ -1467,7 +1467,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
               </p>
             </div>
 
-            <span className="text-xs font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-800/40 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+            <span className="text-xs font-bold text-emerald-400 bg-emerald-950/60 px-3.5 py-2 rounded-xl flex items-center gap-1.5 shadow-xs">
               <Check className="w-4 h-4" />
               <span>크리에이터 최종 마스터 납품 완료</span>
             </span>
@@ -1475,21 +1475,21 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
             {/* Visual Master Frame */}
-            <div className="lg:col-span-2 rounded-2xl border-2 border-slate-800 overflow-hidden bg-slate-950 relative shadow-2xl">
+            <div className="lg:col-span-2 rounded-3xl overflow-hidden bg-slate-950 relative shadow-2xl">
               <img
                 src="/src/assets/images/hero_organic_sculpture_1790729297506.jpg"
                 alt="최종 마스터 결과물"
                 referrerPolicy="no-referrer"
                 className="w-full aspect-16/10 object-cover"
               />
-              <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-cyan-400 text-cyan-300 text-xs font-bold flex items-center gap-1.5">
+              <div className="absolute top-4 left-4 px-3.5 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-cyan-300 text-xs font-bold flex items-center gap-1.5 shadow-md">
                 <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
                 <span>8K 초고해상도 무손실 마스터 렌더 완료</span>
               </div>
             </div>
 
             {/* Checklist & Approval */}
-            <div className="space-y-6 bg-[#070A12] border border-slate-800 rounded-2xl p-6">
+            <div className="space-y-6 bg-[#070A12] rounded-3xl p-6 shadow-md">
               <div className="text-xs font-bold text-white uppercase tracking-wider">
                 엔터프라이즈 품질 검수 체크리스트
               </div>
@@ -1544,13 +1544,13 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
                 </label>
               </div>
 
-              <div className="pt-4 border-t border-slate-800">
+              <div className="pt-4">
                 <button
                   onClick={() => {
                     setIsApproved(true);
                     setCurrentStage('DELIVERY');
                   }}
-                  className="w-full py-4 bg-gradient-to-r from-[#FF2E93] via-[#8B5CF6] to-[#00F0FF] text-white font-bold text-sm rounded-xl shadow-lg shadow-pink-500/30 hover:opacity-95 transition-opacity flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-4 bg-gradient-to-r from-[#FF2E93] via-[#8B5CF6] to-[#00F0FF] text-white font-bold text-sm rounded-2xl shadow-lg shadow-pink-500/30 hover:opacity-95 transition-opacity flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <CheckCircle2 className="w-5 h-5 text-white" />
                   <span>최종 결과물 승인 및 파일 수령 (DELIVERY)</span>
@@ -1567,8 +1567,8 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
         ========================================================================
       */}
       {currentStage === 'DELIVERY' && (
-        <section className="bg-[#0B0F1A] border border-slate-800 rounded-2xl p-6 sm:p-10 shadow-2xl space-y-8 animate-fade-in">
-          <div className="border-b border-slate-800 pb-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <section className="bg-[#0B0F1A] rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8 animate-fade-in">
+          <div className="pb-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
               <div className="text-xs font-black text-emerald-400 uppercase tracking-wider flex items-center gap-1.5 mb-1">
                 <Download className="w-4 h-4" />
@@ -1582,7 +1582,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
               </p>
             </div>
 
-            <div className="px-3.5 py-1.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs font-bold flex items-center gap-1.5">
+            <div className="px-3.5 py-1.5 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold flex items-center gap-1.5 shadow-xs">
               <Check className="w-4 h-4 text-emerald-400" />
               <span>프로젝트 성공적 종료 (Closed & Paid)</span>
             </div>
@@ -1591,9 +1591,9 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
           {/* Download Assets Vault */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Asset 1: Master Video / High-Res Bundle */}
-            <div className="bg-[#070A12] border border-slate-800 rounded-2xl p-5 flex items-start justify-between gap-4 hover:border-slate-700 transition-colors">
+            <div className="bg-[#070A12] rounded-3xl p-5 flex items-start justify-between gap-4 hover:bg-[#0c1220] transition-colors shadow-md">
               <div className="flex items-start gap-3.5">
-                <div className="w-11 h-11 rounded-xl bg-pink-500/20 border border-pink-500/40 text-pink-400 flex items-center justify-center shrink-0">
+                <div className="w-11 h-11 rounded-2xl bg-pink-500/20 text-pink-400 flex items-center justify-center shrink-0">
                   <FolderDown className="w-5 h-5" />
                 </div>
                 <div>
@@ -1610,16 +1610,16 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
               </div>
               <button
                 onClick={() => alert('최종 마스터 번들 다운로드가 시작되었습니다.')}
-                className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-cyan-300 font-bold text-xs rounded-lg transition-colors cursor-pointer shrink-0"
+                className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-cyan-300 font-bold text-xs rounded-xl transition-colors cursor-pointer shrink-0"
               >
                 다운로드
               </button>
             </div>
 
             {/* Asset 2: Prompt Recipe & Model Weights */}
-            <div className="bg-[#070A12] border border-slate-800 rounded-2xl p-5 flex items-start justify-between gap-4 hover:border-slate-700 transition-colors">
+            <div className="bg-[#070A12] rounded-3xl p-5 flex items-start justify-between gap-4 hover:bg-[#0c1220] transition-colors shadow-md">
               <div className="flex items-start gap-3.5">
-                <div className="w-11 h-11 rounded-xl bg-purple-500/20 border border-purple-500/40 text-purple-400 flex items-center justify-center shrink-0">
+                <div className="w-11 h-11 rounded-2xl bg-purple-500/20 text-purple-400 flex items-center justify-center shrink-0">
                   <FileText className="w-5 h-5" />
                 </div>
                 <div>
@@ -1636,16 +1636,16 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
               </div>
               <button
                 onClick={() => alert('프롬프트 레시피 파일이 다운로드되었습니다.')}
-                className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-cyan-300 font-bold text-xs rounded-lg transition-colors cursor-pointer shrink-0"
+                className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-cyan-300 font-bold text-xs rounded-xl transition-colors cursor-pointer shrink-0"
               >
                 다운로드
               </button>
             </div>
 
             {/* Asset 3: Copyright Transfer Certificate */}
-            <div className="bg-[#070A12] border border-slate-800 rounded-2xl p-5 flex items-start justify-between gap-4 hover:border-slate-700 transition-colors">
+            <div className="bg-[#070A12] rounded-3xl p-5 flex items-start justify-between gap-4 hover:bg-[#0c1220] transition-colors shadow-md">
               <div className="flex items-start gap-3.5">
-                <div className="w-11 h-11 rounded-xl bg-cyan-500/20 border border-cyan-500/40 text-cyan-400 flex items-center justify-center shrink-0">
+                <div className="w-11 h-11 rounded-2xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center shrink-0">
                   <FileCheck2 className="w-5 h-5" />
                 </div>
                 <div>
@@ -1662,16 +1662,16 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
               </div>
               <button
                 onClick={() => alert('저작재산권 양도 증서 PDF가 다운로드되었습니다.')}
-                className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-cyan-300 font-bold text-xs rounded-lg transition-colors cursor-pointer shrink-0"
+                className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-cyan-300 font-bold text-xs rounded-xl transition-colors cursor-pointer shrink-0"
               >
                 증서 받기
               </button>
             </div>
 
             {/* Asset 4: Tax Invoice */}
-            <div className="bg-[#070A12] border border-slate-800 rounded-2xl p-5 flex items-start justify-between gap-4 hover:border-slate-700 transition-colors">
+            <div className="bg-[#070A12] rounded-3xl p-5 flex items-start justify-between gap-4 hover:bg-[#0c1220] transition-colors shadow-md">
               <div className="flex items-start gap-3.5">
-                <div className="w-11 h-11 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center shrink-0">
+                <div className="w-11 h-11 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
                 <div>
@@ -1688,7 +1688,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
               </div>
               <button
                 onClick={() => alert('전자세금계산서 PDF가 다운로드되었습니다.')}
-                className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-cyan-300 font-bold text-xs rounded-lg transition-colors cursor-pointer shrink-0"
+                className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-cyan-300 font-bold text-xs rounded-xl transition-colors cursor-pointer shrink-0"
               >
                 계산서 출력
               </button>
@@ -1696,7 +1696,7 @@ export const ProjectPipelinePage: React.FC<ProjectPipelinePageProps> = ({
           </div>
 
           {/* Action Row */}
-          <div className="border-t border-slate-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
             <button
               onClick={() => {
                 setCurrentStage('REQUEST');

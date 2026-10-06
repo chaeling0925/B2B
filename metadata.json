@@ -1,6 +1,6 @@
 {
-  "name": "Remix -BTB",
-  "description": "Imported from GitHub",
+  "name": "콘텐트립 AI",
+  "description": "기업 브랜드를 위한 AI 영상, AI 룩북, AI 콘셉트 아트, 생성형 브랜딩 마켓플레이스",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

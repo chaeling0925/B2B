@@ -20,14 +20,17 @@ import {
 } from 'lucide-react';
 import { ServiceItem, CategoryId } from '../types/marketplace';
 import { ServiceCard } from './ServiceCard';
+import { HowItWorksProcess } from './HowItWorksProcess';
 
 interface MarketplaceHomeProps {
   services: ServiceItem[];
   currentCategory: CategoryId;
   onSelectCategory: (category: CategoryId) => void;
   onSelectService: (service: ServiceItem) => void;
+  onOpenInquiry?: (service: ServiceItem) => void;
   onOpenRfp: () => void;
   onOpenPipeline?: () => void;
+  onOpenWorkspace?: () => void;
   bookmarks: string[];
   onToggleBookmark: (id: string, e: React.MouseEvent) => void;
   searchQuery: string;
@@ -39,8 +42,10 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
   currentCategory,
   onSelectCategory,
   onSelectService,
+  onOpenInquiry,
   onOpenRfp,
   onOpenPipeline,
+  onOpenWorkspace,
   bookmarks,
   onToggleBookmark,
   searchQuery,
@@ -48,14 +53,23 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
 }) => {
   const [selectedToolFilter, setSelectedToolFilter] = useState<string>('all');
 
-  // AI-Focused Categories
+  // AI-Focused Categories with friendly banner subheads (Matching screenshot)
+  const categorySubtitles: Record<CategoryId, string> = {
+    all: '⚡ 촬영비 없이 광고·릴스·유튜브 영상 만들기',
+    ai_video: '⚡ 촬영비 없이 광고·릴스·유튜브 영상 만들기',
+    ai_image: '⚡ 스튜디오 섭외 없이 하이엔드 화보·룩북 만들기',
+    ai_art: '⚡ 게임·영화 프리비즈 8K 시네마틱 매트페인팅',
+    ai_branding: '⚡ 알고리즘 기반 무한 확장 벡터 로고·아이덴티티',
+    ai_audio: '⚡ 저작권 분쟁 없는 오리지널 브랜드 사운드트랙'
+  };
+
   const aiCategories = [
-    { id: 'all' as CategoryId, label: '전체 AI 크리에이티브', icon: LayoutGrid, count: services.length },
-    { id: 'ai_video' as CategoryId, label: 'AI 영상 & 광고 CF', icon: Video, desc: 'Runway Gen-3 · Sora · 상업용 필름' },
-    { id: 'ai_image' as CategoryId, label: 'AI 이미지 & 룩북', icon: ImageIcon, desc: 'Flux Pro · 커스텀 LoRA 모델 화보' },
-    { id: 'ai_art' as CategoryId, label: 'AI 콘셉트 아트', icon: Palette, desc: '게임 세계관 · 영화 프리비즈 · 키비주얼' },
-    { id: 'ai_branding' as CategoryId, label: 'AI 생성형 브랜딩', icon: Cpu, desc: '알고리즘 로고 · 다이내믹 아이덴티티' },
-    { id: 'ai_audio' as CategoryId, label: 'AI 음악 & 사운드', icon: Music, desc: '사운드 로고 · 맞춤형 BGM · 보이스' }
+    { id: 'all' as CategoryId, label: '전체 AI 크리에이티브', pillLabel: '전체 카테고리', icon: LayoutGrid, count: services.length },
+    { id: 'ai_video' as CategoryId, label: 'AI 영상 & 광고 CF', pillLabel: '광고·숏폼 영상 제작', icon: Video, desc: 'Runway Gen-3 · Sora · 상업용 필름' },
+    { id: 'ai_image' as CategoryId, label: 'AI 이미지 & 룩북', pillLabel: '패션·모델 룩북 제작', icon: ImageIcon, desc: 'Flux Pro · 커스텀 LoRA 모델 화보' },
+    { id: 'ai_art' as CategoryId, label: 'AI 콘셉트 아트', pillLabel: '콘셉트 아트·세계관', icon: Palette, desc: '게임 세계관 · 영화 프리비즈 · 키비주얼' },
+    { id: 'ai_branding' as CategoryId, label: 'AI 생성형 브랜딩', pillLabel: '생성형 브랜드 로고', icon: Cpu, desc: '알고리즘 로고 · 다이내믹 아이덴티티' },
+    { id: 'ai_audio' as CategoryId, label: 'AI 음악 & 사운드', pillLabel: '사운드·BGM 제작', icon: Music, desc: '사운드 로고 · 맞춤형 BGM · 보이스' }
   ];
 
   // Quick AI Tools Filter
@@ -84,7 +98,7 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
         (Pink #FF2E93 -> Purple #8B5CF6 -> Cyan #00F0FF)
         ========================================================================
       */}
-      <section className="bg-[#0B0F1A] rounded-2xl border border-slate-800/90 overflow-hidden mt-4 shadow-2xl relative">
+      <section className="bg-[#0B0F1A] rounded-2xl overflow-hidden mt-4 shadow-2xl relative">
         {/* Subtle Ambient Radial Glows */}
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#FF2E93]/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#00F0FF]/10 rounded-full blur-3xl pointer-events-none" />
@@ -148,7 +162,7 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
               </button>
             </div>
 
-            {/* Quick Search Bar with Neon Focus Ring */}
+            {/* Quick Search Bar with Neon Focus Ring (Borderless) */}
             <div className="relative max-w-lg mt-4">
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
               <input
@@ -156,7 +170,7 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
                 value={searchQuery}
                 onChange={(e) => onSearchChange(e.target.value)}
                 placeholder="찾으시는 AI 비디오, 룩북, 캐릭터 또는 툴(Runway, Flux 등) 검색"
-                className="w-full pl-10 pr-24 py-3 bg-[#070A12] border border-slate-700/80 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition-all shadow-inner"
+                className="w-full pl-10 pr-24 py-3 bg-[#070A12] rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:ring-1 focus:ring-cyan-400 transition-all shadow-inner"
               />
               <button
                 onClick={onOpenPipeline || onOpenRfp}
@@ -182,7 +196,7 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
             </div>
 
             {/* Main AI Generative Organic Sculpture (Parametric 3D Organism in signature neon palette) */}
-            <div className="relative z-10 w-[84%] aspect-3/4 rounded-xl overflow-hidden shadow-2xl mr-8 mt-6 border-2 border-slate-900 bg-slate-950 group">
+            <div className="relative z-10 w-[84%] aspect-3/4 rounded-xl overflow-hidden shadow-2xl mr-8 mt-6 bg-slate-950 group">
               <img
                 src="/src/assets/images/hero_organic_sculpture_1790729297506.jpg"
                 alt="콘텐트립 AI 생성형 유기체 3D 비주얼"
@@ -191,13 +205,13 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
               />
               {/* Subtle glass reflection & bottom badge */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F1A]/80 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-md border border-white/10 text-[9px] font-mono tracking-wider text-cyan-300">
+              <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-md text-[9px] font-mono tracking-wider text-cyan-300">
                 AI BIO-ALGORITHM V4.2
               </div>
             </div>
 
-            {/* Floating Circular Stamp Sticker (Dark glass with Cyan/Pink neon rim) */}
-            <div className="absolute bottom-6 left-2 sm:left-4 z-20 w-28 h-28 rounded-full bg-[#070A14]/95 text-white p-2 shadow-2xl border-2 border-cyan-400 flex flex-col items-center justify-center text-center rotate-[-12deg] hover:rotate-0 transition-transform select-none cursor-pointer shadow-[0_0_20px_rgba(0,240,255,0.35)]">
+            {/* Floating Circular Stamp Sticker (Dark glass with Cyan/Pink soft glow) */}
+            <div className="absolute bottom-6 left-2 sm:left-4 z-20 w-28 h-28 rounded-full bg-[#070A14]/95 text-white p-2 shadow-2xl flex flex-col items-center justify-center text-center rotate-[-12deg] hover:rotate-0 transition-transform select-none cursor-pointer shadow-[0_0_25px_rgba(0,240,255,0.25)]">
               <div className="text-[7.5px] font-bold tracking-tighter uppercase text-cyan-300">
                 • CONTENTRIP AI •
               </div>
@@ -215,9 +229,9 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
           </div>
         </div>
 
-        {/* Bottom Pinned Black Statistics Bar (Spanning Full Width with Brand Gradient Accents) */}
-        <div className="bg-[#05070D] border-t border-slate-800/90 grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-slate-800/80">
-          <div className="p-4 sm:p-6 text-center">
+        {/* Bottom Pinned Black Statistics Bar (Borderless surface separation) */}
+        <div className="bg-[#05070D] grid grid-cols-2 md:grid-cols-4 gap-px bg-slate-900/20">
+          <div className="p-4 sm:p-6 text-center bg-[#05070D]">
             <div className="font-display text-3xl sm:text-4xl bg-gradient-to-r from-[#FF2E93] to-purple-400 bg-clip-text text-transparent tracking-tight tabular-nums">
               100%
             </div>
@@ -226,7 +240,7 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
             </div>
           </div>
 
-          <div className="p-4 sm:p-6 text-center">
+          <div className="p-4 sm:p-6 text-center bg-[#05070D]">
             <div className="font-display text-3xl sm:text-4xl text-white tracking-tight tabular-nums">
               80+
             </div>
@@ -235,7 +249,7 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
             </div>
           </div>
 
-          <div className="p-4 sm:p-6 text-center">
+          <div className="p-4 sm:p-6 text-center bg-[#05070D]">
             <div className="font-display text-3xl sm:text-4xl text-cyan-400 tracking-tight tabular-nums">
               2h
             </div>
@@ -244,7 +258,7 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
             </div>
           </div>
 
-          <div className="p-4 sm:p-6 text-center">
+          <div className="p-4 sm:p-6 text-center bg-[#05070D]">
             <div className="font-display text-3xl sm:text-4xl text-white tracking-tight tabular-nums">
               48h
             </div>
@@ -254,14 +268,13 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
           </div>
         </div>
       </section>
-
       {/* 
         ========================================================================
         SELECTED WORK: ASYMMETRIC BENTO GRID (MATCHING REFERENCE IMAGE)
         ========================================================================
       */}
       <section className="space-y-5">
-        <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div className="flex items-center justify-between pb-2">
           <div className="flex items-center gap-2">
             <h2 className="font-display text-2xl sm:text-3xl text-white tracking-tight uppercase">
               SELECTED WORK
@@ -281,7 +294,7 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
           {/* Work 1: Cinematic Video */}
           <div 
             onClick={() => onSelectService(services[0])}
-            className="group relative bg-[#0F1424] rounded-xl overflow-hidden border border-slate-800 hover:border-pink-500/70 hover:shadow-[0_0_25px_rgba(255,46,147,0.2)] transition-all duration-300 cursor-pointer"
+            className="group relative bg-[#0F1424] rounded-2xl overflow-hidden hover:shadow-[0_0_30px_rgba(255,46,147,0.25)] transition-all duration-300 cursor-pointer shadow-lg"
           >
             <div className="relative aspect-4/3 overflow-hidden bg-slate-900">
               <img
@@ -306,7 +319,7 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
           {/* Work 2: Fashion Lookbook (With Signature Gradient Geometric Corner) */}
           <div 
             onClick={() => onSelectService(services[1])}
-            className="group relative bg-[#0F1424] rounded-xl overflow-hidden border border-slate-800 hover:border-cyan-400/70 hover:shadow-[0_0_25px_rgba(0,240,255,0.2)] transition-all duration-300 cursor-pointer"
+            className="group relative bg-[#0F1424] rounded-2xl overflow-hidden hover:shadow-[0_0_30px_rgba(0,240,255,0.25)] transition-all duration-300 cursor-pointer shadow-lg"
           >
             <div className="relative aspect-4/3 overflow-hidden bg-slate-900">
               <img
@@ -333,7 +346,7 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
           {/* Work 3: Concept Art & Worldbuilding */}
           <div 
             onClick={() => onSelectService(services[2])}
-            className="group relative bg-[#0F1424] rounded-xl overflow-hidden border border-slate-800 hover:border-purple-400/70 hover:shadow-[0_0_25px_rgba(168,85,247,0.2)] transition-all duration-300 cursor-pointer"
+            className="group relative bg-[#0F1424] rounded-2xl overflow-hidden hover:shadow-[0_0_30px_rgba(168,85,247,0.25)] transition-all duration-300 cursor-pointer shadow-lg"
           >
             <div className="relative aspect-4/3 overflow-hidden bg-slate-900">
               <img
@@ -362,16 +375,16 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
         SERVICES SECTION: DEEP VIOLET CARD + 2X2 GRID (MATCHING REFERENCE IMAGE)
         ========================================================================
       */}
-      <section className="bg-[#0B0F1A] rounded-2xl border border-slate-800/90 overflow-hidden">
-        <div className="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-slate-800/80">
+      <section className="bg-[#0B0F1A] rounded-2xl overflow-hidden shadow-2xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12">
           {/* Left Deep Gradient Card: SERVICES ↘ */}
-          <div className="lg:col-span-4 bg-gradient-to-br from-[#1E0D36] via-[#101426] to-[#081B2B] border-r border-pink-500/20 p-8 sm:p-10 flex flex-col justify-between text-white space-y-8">
+          <div className="lg:col-span-4 bg-gradient-to-br from-[#1E0D36] via-[#101426] to-[#081B2B] p-8 sm:p-10 flex flex-col justify-between text-white space-y-8">
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <h3 className="font-display text-4xl sm:text-5xl uppercase tracking-tight bg-gradient-to-r from-pink-400 via-purple-300 to-cyan-300 bg-clip-text text-transparent">
                   SERVICES
                 </h3>
-                <div className="w-10 h-10 rounded-full bg-pink-500/20 border border-pink-500/40 text-cyan-300 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-full bg-pink-500/20 text-cyan-300 flex items-center justify-center">
                   <ArrowRight className="w-5 h-5 transform rotate-45" />
                 </div>
               </div>
@@ -380,7 +393,7 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
               </p>
             </div>
 
-            <div className="pt-4 border-t border-slate-800 text-xs space-y-1.5 text-slate-400">
+            <div className="pt-4 text-xs space-y-2 text-slate-400">
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
                 <span>100% 저작재산권 귀사 완전 귀속</span>
@@ -403,7 +416,7 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
               onClick={() => onSelectCategory('ai_video')}
               className="space-y-2.5 cursor-pointer group"
             >
-              <div className="w-11 h-11 rounded-full border border-slate-700 group-hover:border-cyan-400 group-hover:bg-cyan-950/30 flex items-center justify-center text-slate-300 group-hover:text-cyan-400 transition-all shadow-xs">
+              <div className="w-11 h-11 rounded-full bg-slate-800/60 group-hover:bg-cyan-500/20 flex items-center justify-center text-slate-300 group-hover:text-cyan-400 transition-all shadow-xs">
                 <Video className="w-5 h-5" />
               </div>
               <h4 className="font-bold text-sm text-white group-hover:text-cyan-300 transition-colors">
@@ -419,7 +432,7 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
               onClick={() => onSelectCategory('ai_image')}
               className="space-y-2.5 cursor-pointer group"
             >
-              <div className="w-11 h-11 rounded-full border border-slate-700 group-hover:border-pink-400 group-hover:bg-pink-950/30 flex items-center justify-center text-slate-300 group-hover:text-pink-400 transition-all shadow-xs">
+              <div className="w-11 h-11 rounded-full bg-slate-800/60 group-hover:bg-pink-500/20 flex items-center justify-center text-slate-300 group-hover:text-pink-400 transition-all shadow-xs">
                 <ImageIcon className="w-5 h-5" />
               </div>
               <h4 className="font-bold text-sm text-white group-hover:text-pink-300 transition-colors">
@@ -435,7 +448,7 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
               onClick={() => onSelectCategory('ai_art')}
               className="space-y-2.5 cursor-pointer group"
             >
-              <div className="w-11 h-11 rounded-full border border-slate-700 group-hover:border-purple-400 group-hover:bg-purple-950/30 flex items-center justify-center text-slate-300 group-hover:text-purple-400 transition-all shadow-xs">
+              <div className="w-11 h-11 rounded-full bg-slate-800/60 group-hover:bg-purple-500/20 flex items-center justify-center text-slate-300 group-hover:text-purple-400 transition-all shadow-xs">
                 <Palette className="w-5 h-5" />
               </div>
               <h4 className="font-bold text-sm text-white group-hover:text-purple-300 transition-colors">
@@ -451,7 +464,7 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
               onClick={() => onSelectCategory('ai_branding')}
               className="space-y-2.5 cursor-pointer group"
             >
-              <div className="w-11 h-11 rounded-full border border-slate-700 group-hover:border-cyan-400 group-hover:bg-cyan-950/30 flex items-center justify-center text-slate-300 group-hover:text-cyan-400 transition-all shadow-xs">
+              <div className="w-11 h-11 rounded-full bg-slate-800/60 group-hover:bg-cyan-500/20 flex items-center justify-center text-slate-300 group-hover:text-cyan-400 transition-all shadow-xs">
                 <Cpu className="w-5 h-5" />
               </div>
               <h4 className="font-bold text-sm text-white group-hover:text-cyan-300 transition-colors">
@@ -467,11 +480,11 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
 
       {/* 
         ========================================================================
-        ALL SERVICES & FILTER SECTION (Zero-Pill Controls)
+        ALL SERVICES & FILTER SECTION (Zero-Pill Controls, Borderless)
         ========================================================================
       */}
       <section className="space-y-6">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-2">
           <div>
             <h2 className="font-display text-2xl sm:text-3xl text-white tracking-tight uppercase">
               AI CREATORS & SERVICES
@@ -491,10 +504,10 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
               <button
                 key={tool}
                 onClick={() => setSelectedToolFilter(tool === '전체 툴' ? 'all' : tool)}
-                className={`px-3 py-1.5 rounded-lg border text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
                   (selectedToolFilter === tool || (selectedToolFilter === 'all' && tool === '전체 툴'))
-                    ? 'border-pink-500 bg-gradient-to-r from-pink-950/50 to-purple-950/40 text-pink-300 shadow-[0_0_12px_rgba(255,46,147,0.3)]'
-                    : 'border-slate-800 bg-[#0F1424] text-slate-400 hover:text-white hover:border-slate-700'
+                    ? 'bg-pink-500/25 text-pink-300 shadow-[0_0_12px_rgba(255,46,147,0.3)]'
+                    : 'bg-[#0F1424] text-slate-400 hover:text-white hover:bg-[#141C30]'
                 }`}
               >
                 {tool}
@@ -512,10 +525,10 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
               <button
                 key={cat.id}
                 onClick={() => onSelectCategory(cat.id)}
-                className={`p-3.5 rounded-xl border text-left transition-all duration-200 flex flex-col justify-between h-24 cursor-pointer ${
+                className={`p-3.5 rounded-2xl text-left transition-all duration-200 flex flex-col justify-between h-24 cursor-pointer ${
                   isSelected
-                    ? 'border-cyan-400 bg-cyan-950/30 text-white shadow-[0_0_15px_rgba(0,240,255,0.25)]'
-                    : 'border-slate-800 bg-[#0F1424] hover:border-slate-700 text-slate-300 hover:text-white'
+                    ? 'bg-cyan-950/40 text-white shadow-[0_0_20px_rgba(0,240,255,0.2)]'
+                    : 'bg-[#0F1424] hover:bg-[#141C30] text-slate-300 hover:text-white shadow-md'
                 }`}
               >
                 <Icon className={`w-4 h-4 ${isSelected ? 'text-cyan-400' : 'text-slate-400'}`} />
@@ -530,9 +543,37 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
           })}
         </div>
 
+        {/* Category Pills & Lightning Subheader (Clean Borderless) */}
+        <div className="pt-2">
+          {/* Category Pill Buttons */}
+          <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2">
+            {aiCategories.map((cat) => {
+              const isSelected = currentCategory === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => onSelectCategory(cat.id)}
+                  className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
+                    isSelected
+                      ? 'bg-slate-800 text-white shadow-md'
+                      : 'bg-transparent text-slate-400 hover:text-white hover:bg-slate-850'
+                  }`}
+                >
+                  {cat.pillLabel}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Subheading with Lightning Icon */}
+          <div className="flex items-center gap-2 text-base sm:text-lg font-bold text-white tracking-tight mt-3 mb-1">
+            <span>{categorySubtitles[currentCategory]}</span>
+          </div>
+        </div>
+
         {/* Service Cards Grid */}
         {filteredServices.length === 0 ? (
-          <div className="p-12 text-center bg-[#0F1424] rounded-2xl border border-slate-800 space-y-3">
+          <div className="p-12 text-center bg-[#0F1424] rounded-2xl space-y-3 shadow-lg">
             <p className="text-slate-400 text-sm">선택한 조건에 일치하는 AI 서비스가 없습니다.</p>
             <button
               onClick={() => {
@@ -552,6 +593,7 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
                 key={service.id}
                 service={service}
                 onSelect={onSelectService}
+                onOpenInquiry={onOpenInquiry}
                 isBookmarked={bookmarks.includes(service.id)}
                 onToggleBookmark={onToggleBookmark}
               />
@@ -562,10 +604,24 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
 
       {/* 
         ========================================================================
-        TRUSTED BY LOGO STRIP (MATCHING REFERENCE IMAGE)
+        HOW IT WORKS / B2B ORDER & DELIVERY WORKFLOW
         ========================================================================
       */}
-      <section className="border-y border-slate-800/80 py-8 space-y-4">
+      <HowItWorksProcess 
+        onOpenInquiryDemo={() => {
+          if (onOpenInquiry && services.length > 0) {
+            onOpenInquiry(services[0]);
+          }
+        }}
+        onNavigateToWorkspace={onOpenWorkspace}
+      />
+
+      {/* 
+        ========================================================================
+        TRUSTED BY LOGO STRIP (Borderless)
+        ========================================================================
+      */}
+      <section className="py-8 space-y-4">
         <div className="text-[11px] font-bold uppercase tracking-widest text-cyan-400 text-center">
           TRUSTED BY VISIONARY ENTERPRISE CLIENTS
         </div>
@@ -582,10 +638,10 @@ export const MarketplaceHome: React.FC<MarketplaceHomeProps> = ({
 
       {/* 
         ========================================================================
-        BOTTOM SIGNATURE GRADIENT CTA (MATCHING REFERENCE IMAGE BOTTOM)
+        BOTTOM SIGNATURE GRADIENT CTA (Borderless)
         ========================================================================
       */}
-      <section className="bg-gradient-to-r from-[#1F0A38] via-[#11162B] to-[#072436] border border-pink-500/40 rounded-2xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-[0_0_50px_rgba(255,46,147,0.2)]">
+      <section className="bg-gradient-to-r from-[#1F0A38] via-[#11162B] to-[#072436] rounded-2xl p-8 sm:p-12 text-white flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-[0_0_50px_rgba(255,46,147,0.2)]">
         <div className="space-y-2 max-w-xl">
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[0.95] uppercase bg-gradient-to-r from-white via-slate-100 to-cyan-200 bg-clip-text text-transparent">
             LET'S CREATE

@@ -42,14 +42,14 @@ export const ClientWorkspace: React.FC<ClientWorkspaceProps> = ({
     <div className="space-y-6 pb-20 text-slate-100">
       {/* Toast Notification */}
       {downloadSuccessToast && (
-        <div className="fixed bottom-6 right-6 z-50 bg-[#0F1424] text-white px-4 py-3 rounded-xl shadow-2xl text-xs font-semibold flex items-center gap-2 border border-pink-500/50 shadow-[0_0_20px_rgba(236,72,153,0.3)] animate-fade-in">
+        <div className="fixed bottom-6 right-6 z-50 bg-[#0F1424] text-white px-5 py-3.5 rounded-2xl shadow-2xl text-xs font-semibold flex items-center gap-2 shadow-[0_0_30px_rgba(236,72,153,0.3)] animate-fade-in">
           <CheckCircle2 className="w-4 h-4 text-cyan-400" />
           {downloadSuccessToast}
         </div>
       )}
 
       {/* Top Breadcrumb & Header */}
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+      <div className="flex flex-wrap items-center justify-between gap-4 pb-4">
         <div>
           <button 
             onClick={onBack}
@@ -62,7 +62,7 @@ export const ClientWorkspace: React.FC<ClientWorkspaceProps> = ({
             <h1 className="text-2xl font-bold text-white">
               기업 고객 전담 워크스페이스
             </h1>
-            <span className="text-xs bg-gradient-to-r from-pink-500/20 to-cyan-500/20 text-pink-300 border border-pink-500/30 font-bold px-2 py-0.5 rounded">
+            <span className="text-xs bg-gradient-to-r from-pink-500/20 to-cyan-500/20 text-pink-300 font-bold px-2.5 py-0.5 rounded-full">
               {ENTERPRISE_CLIENT_PROFILE.enterpriseTier}
             </span>
           </div>
@@ -72,7 +72,7 @@ export const ClientWorkspace: React.FC<ClientWorkspaceProps> = ({
         </div>
 
         {/* Dedicated PM Card */}
-        <div className="bg-[#0F1424] text-white rounded-xl p-3 sm:px-4 sm:py-2.5 flex items-center gap-3 border border-slate-800 shadow-md">
+        <div className="bg-[#0F1424] text-white rounded-2xl p-3 sm:px-4 sm:py-2.5 flex items-center gap-3 shadow-md">
           <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#FF2E93] to-[#00F0FF] text-white font-bold flex items-center justify-center text-xs shadow-xs">
             PM
           </div>
@@ -82,7 +82,7 @@ export const ClientWorkspace: React.FC<ClientWorkspaceProps> = ({
           </div>
           <a 
             href="tel:1544-0920" 
-            className="ml-2 px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-cyan-300 rounded text-[11px] font-medium transition-colors flex items-center gap-1 border border-slate-700"
+            className="ml-2 px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-cyan-300 rounded-lg text-[11px] font-medium transition-colors flex items-center gap-1"
           >
             <Phone className="w-3 h-3 text-cyan-400" />
             직통 연결
@@ -92,25 +92,25 @@ export const ClientWorkspace: React.FC<ClientWorkspaceProps> = ({
 
       {/* KPI Stats Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <div className="p-4 bg-[#0F1424] rounded-xl border border-slate-800 shadow-xs">
+        <div className="p-4 bg-[#0F1424] rounded-2xl shadow-xs">
           <div className="text-xs text-slate-400 font-medium">진행 중 프로젝트</div>
           <div className="text-xl font-bold text-white mt-1 tabular-nums">2건</div>
           <div className="text-[11px] text-cyan-400 mt-0.5">정상 진행 중</div>
         </div>
 
-        <div className="p-4 bg-[#111728] rounded-xl border border-slate-800 shadow-xs">
+        <div className="p-4 bg-[#111728] rounded-2xl shadow-xs">
           <div className="text-xs text-slate-400 font-medium">검토 대기 시안</div>
           <div className="text-xl font-bold text-white mt-1 tabular-nums">1건</div>
           <div className="text-[11px] text-slate-400 mt-0.5">피드백 필요</div>
         </div>
 
-        <div className="p-4 bg-[#111728] rounded-xl border border-slate-800 shadow-xs">
+        <div className="p-4 bg-[#111728] rounded-2xl shadow-xs">
           <div className="text-xs text-slate-400 font-medium">전자세금계산서</div>
           <div className="text-xl font-bold text-white mt-1 tabular-nums">3건</div>
           <div className="text-[11px] text-slate-400 mt-0.5">국세청 연동 완료</div>
         </div>
 
-        <div className="p-4 bg-[#111728] rounded-xl border border-slate-800 shadow-xs">
+        <div className="p-4 bg-[#111728] rounded-2xl shadow-xs">
           <div className="text-xs text-slate-400 font-medium">정부지원 바우처 잔액</div>
           <div className="text-xl font-bold text-white mt-1 tabular-nums">250만 원</div>
           <div className="text-[11px] text-slate-500 mt-0.5">2026.12.31 만료</div>
@@ -118,33 +118,33 @@ export const ClientWorkspace: React.FC<ClientWorkspaceProps> = ({
       </div>
 
       {/* Workspace Tabs */}
-      <div className="flex items-center gap-2 border-b border-slate-800 text-sm font-semibold">
+      <div className="flex items-center gap-2 text-sm font-semibold">
         <button
           onClick={() => setActiveTab('projects')}
-          className={`pb-3 px-1 transition-colors ${
+          className={`py-2 px-3.5 rounded-xl transition-all cursor-pointer ${
             activeTab === 'projects'
-              ? 'border-b-2 border-white text-white font-bold'
-              : 'text-slate-400 hover:text-white'
+              ? 'bg-slate-800 text-white font-bold shadow-xs'
+              : 'text-slate-400 hover:text-white hover:bg-slate-900/60'
           }`}
         >
           의뢰 프로젝트 관리 ({projects.length})
         </button>
         <button
           onClick={() => setActiveTab('documents')}
-          className={`pb-3 px-1 transition-colors ${
+          className={`py-2 px-3.5 rounded-xl transition-all cursor-pointer ${
             activeTab === 'documents'
-              ? 'border-b-2 border-white text-white font-bold'
-              : 'text-slate-400 hover:text-white'
+              ? 'bg-slate-800 text-white font-bold shadow-xs'
+              : 'text-slate-400 hover:text-white hover:bg-slate-900/60'
           }`}
         >
           세금계산서 & 계약서 보관함
         </button>
         <button
           onClick={() => setActiveTab('account')}
-          className={`pb-3 px-1 transition-colors ${
+          className={`py-2 px-3.5 rounded-xl transition-all cursor-pointer ${
             activeTab === 'account'
-              ? 'border-b-2 border-white text-white font-bold'
-              : 'text-slate-400 hover:text-white'
+              ? 'bg-slate-800 text-white font-bold shadow-xs'
+              : 'text-slate-400 hover:text-white hover:bg-slate-900/60'
           }`}
         >
           기업 정보 및 지출 관리
@@ -157,7 +157,7 @@ export const ClientWorkspace: React.FC<ClientWorkspaceProps> = ({
           {projects.map((proj) => (
             <div 
               key={proj.id}
-              className="bg-[#0F1424] rounded-xl border border-slate-800 p-5 shadow-xs space-y-4 hover:border-slate-700 transition-colors"
+              className="bg-[#0F1424] rounded-2xl p-5 shadow-md space-y-4 hover:bg-[#12182c] transition-colors"
             >
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
@@ -187,7 +187,7 @@ export const ClientWorkspace: React.FC<ClientWorkspaceProps> = ({
               </div>
 
               {/* Progress & Milestone */}
-              <div className="bg-slate-900/80 rounded-lg p-3 border border-slate-800 space-y-2">
+              <div className="bg-slate-900/80 rounded-xl p-3.5 space-y-2 shadow-xs">
                 <div className="flex items-center justify-between text-xs">
                   <span className="font-semibold text-slate-300">
                     현재 단계: <span className="text-cyan-300">{proj.currentMilestone}</span>
@@ -209,17 +209,17 @@ export const ClientWorkspace: React.FC<ClientWorkspaceProps> = ({
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-slate-800">
+              <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => onSelectProjectForChat(proj.creatorName)}
-                    className="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-semibold transition-colors border border-slate-700"
+                    className="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-semibold transition-colors cursor-pointer"
                   >
                     파트너 실시간 소통방
                   </button>
                   <button
                     onClick={() => handleDownloadDoc(`[계약서]_${proj.projectCode}.pdf`)}
-                    className="px-3 py-1.5 bg-[#0F1424] border border-slate-800 hover:bg-slate-800 text-slate-300 rounded-lg text-xs font-medium transition-colors flex items-center gap-1"
+                    className="px-3.5 py-2 bg-[#141B2D] hover:bg-slate-800 text-slate-300 rounded-xl text-xs font-medium transition-colors flex items-center gap-1 cursor-pointer"
                   >
                     <Download className="w-3 h-3 text-slate-400" />
                     전자계약서
@@ -232,13 +232,13 @@ export const ClientWorkspace: React.FC<ClientWorkspaceProps> = ({
                       setDownloadSuccessToast(`'${proj.title}' 피드백 코멘트 검토 요청이 등록되었습니다.`);
                       setTimeout(() => setDownloadSuccessToast(null), 3000);
                     }}
-                    className="px-4 py-2 border border-slate-700 hover:bg-slate-800 text-slate-200 text-xs font-semibold rounded-lg transition-colors"
+                    className="px-4 py-2 bg-slate-800/80 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl transition-colors cursor-pointer"
                   >
                     피드백 코멘트 작성
                   </button>
                   <button
                     onClick={() => handleApproveMilestone(proj.title)}
-                    className="px-4 py-2 bg-gradient-to-r from-pink-500 to-indigo-600 hover:opacity-90 text-white text-xs font-bold rounded-lg transition-all shadow-[0_0_15px_rgba(236,72,153,0.3)]"
+                    className="px-4 py-2 bg-gradient-to-r from-pink-500 to-indigo-600 hover:opacity-90 text-white text-xs font-bold rounded-xl transition-all shadow-[0_0_15px_rgba(236,72,153,0.3)] cursor-pointer"
                   >
                     산출물 최종 승인
                   </button>
@@ -251,15 +251,15 @@ export const ClientWorkspace: React.FC<ClientWorkspaceProps> = ({
 
       {/* Tab: Documents */}
       {activeTab === 'documents' && (
-        <div className="bg-[#0F1424] rounded-xl border border-slate-800 overflow-hidden shadow-xs">
-          <div className="p-4 bg-slate-900/60 border-b border-slate-800 flex items-center justify-between">
+        <div className="bg-[#0F1424] rounded-2xl overflow-hidden shadow-md">
+          <div className="p-4 bg-slate-900/60 flex items-center justify-between">
             <h3 className="text-xs font-bold text-white">
               법인 전자세금계산서 및 전자계약서 목록
             </h3>
             <span className="text-xs text-cyan-400">국세청 홈택스 API 자동 연동</span>
           </div>
 
-          <div className="divide-y divide-slate-800 text-xs">
+          <div className="text-xs">
             {[
               {
                 title: '전자세금계산서 (2026년 9월분)',
@@ -288,7 +288,7 @@ export const ClientWorkspace: React.FC<ClientWorkspaceProps> = ({
             ].map((doc, idx) => (
               <div key={idx} className="p-4 flex items-center justify-between hover:bg-slate-900/50 transition-colors">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-pink-950/40 border border-pink-500/30 text-pink-400 flex items-center justify-center">
+                  <div className="w-8 h-8 rounded-xl bg-pink-950/40 text-pink-400 flex items-center justify-center">
                     <FileText className="w-4 h-4" />
                   </div>
                   <div>
@@ -306,7 +306,7 @@ export const ClientWorkspace: React.FC<ClientWorkspaceProps> = ({
                   </div>
                   <button
                     onClick={() => handleDownloadDoc(`${doc.title}.pdf`)}
-                    className="p-2 border border-slate-700 hover:bg-slate-800 rounded-lg text-slate-300 transition-colors"
+                    className="p-2 bg-slate-850 hover:bg-slate-750 rounded-xl text-slate-300 transition-colors cursor-pointer"
                     title="PDF 다운로드"
                   >
                     <Download className="w-4 h-4" />
@@ -320,13 +320,13 @@ export const ClientWorkspace: React.FC<ClientWorkspaceProps> = ({
 
       {/* Tab: Account Info */}
       {activeTab === 'account' && (
-        <div className="bg-[#0F1424] rounded-xl border border-slate-800 p-6 shadow-xs space-y-6">
+        <div className="bg-[#0F1424] rounded-2xl p-6 shadow-md space-y-6">
           <h3 className="text-sm font-bold text-white">
             기업 고객 세무 및 결제 기본 정보
           </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-            <div className="p-4 rounded-xl bg-slate-900/70 border border-slate-800 space-y-2">
+            <div className="p-4 rounded-2xl bg-slate-900/70 space-y-2 shadow-xs">
               <div className="font-bold text-slate-200">사업자 정보 (세금계산서 발행용)</div>
               <div className="space-y-1 text-slate-400">
                 <div>상호명: <strong className="text-white">{ENTERPRISE_CLIENT_PROFILE.companyName}</strong></div>
@@ -336,7 +336,7 @@ export const ClientWorkspace: React.FC<ClientWorkspaceProps> = ({
               </div>
             </div>
 
-            <div className="p-4 rounded-xl bg-slate-900/70 border border-slate-800 space-y-2">
+            <div className="p-4 rounded-2xl bg-slate-900/70 space-y-2 shadow-xs">
               <div className="font-bold text-slate-200">결제 및 바우처 정보</div>
               <div className="space-y-1 text-slate-400">
                 <div>기업 회원 등급: <strong className="text-pink-400">{ENTERPRISE_CLIENT_PROFILE.enterpriseTier}</strong></div>
