@@ -99,32 +99,26 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Dedicated AI Project Pipeline Link */}
           <button
             onClick={onOpenPipeline || onOpenRfp}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all text-xs font-semibold cursor-pointer ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-colors text-xs font-semibold cursor-pointer border ${
               activeView === 'pipeline'
-                ? 'bg-gradient-to-r from-pink-500/25 via-purple-500/25 to-cyan-500/25 text-white shadow-[0_0_15px_rgba(236,72,153,0.3)]'
-                : 'bg-slate-900/60 hover:bg-slate-800 text-slate-200 hover:text-white'
+                ? 'bg-slate-800 border-slate-700 text-cyan-300'
+                : 'bg-transparent border-transparent hover:bg-slate-850 text-slate-300 hover:text-white'
             }`}
           >
             <Sparkles className="w-3.5 h-3.5 text-pink-400" />
             <span>AI 맞춤 의뢰</span>
-            <span className="bg-gradient-to-r from-pink-500 to-indigo-600 text-white text-[9px] font-bold px-1.5 py-0.2 rounded-full">
-              파이프라인
-            </span>
           </button>
 
           <button
             onClick={onOpenPipeline || onOpenRfp}
-            className="hidden md:flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer"
+            className="hidden md:flex items-center gap-1 text-slate-300 hover:text-white transition-colors cursor-pointer text-xs font-medium px-2 py-1.5"
           >
             <span>엔터프라이즈</span>
-            <span className="bg-pink-950/70 text-pink-300 text-[10px] font-bold px-1.5 py-0.2 rounded">
-              기업용
-            </span>
           </button>
 
           <button
             onClick={onOpenRfp}
-            className="hidden sm:inline hover:text-white transition-colors text-slate-300"
+            className="hidden sm:inline hover:text-white transition-colors text-slate-300 text-xs font-medium px-2 py-1.5 cursor-pointer"
           >
             크리에이터 등록
           </button>
@@ -132,16 +126,16 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Project Workspace CTA button */}
           <button
             onClick={onOpenWorkspace}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all text-xs font-semibold cursor-pointer ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-colors text-xs font-semibold cursor-pointer border ${
               activeView === 'workspace'
-                ? 'bg-slate-800 text-cyan-300 shadow-[0_0_15px_rgba(6,182,212,0.2)]'
-                : 'bg-slate-900/80 hover:bg-slate-800 text-slate-200 hover:text-white'
+                ? 'bg-slate-800 border-cyan-400/60 text-cyan-300'
+                : 'bg-[#101524] border-slate-800 hover:border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
           >
             <FolderKanban className="w-3.5 h-3.5 text-cyan-400" />
             <span>내 프로젝트</span>
             {activeProjectCount > 0 && (
-              <span className="bg-gradient-to-r from-pink-500 to-cyan-500 text-white font-bold px-1.5 py-0.2 rounded-full text-[10px]">
+              <span className="bg-slate-700 text-slate-200 font-bold px-1.5 py-0.2 rounded-full text-[10px]">
                 {activeProjectCount}
               </span>
             )}
@@ -151,12 +145,12 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="relative">
             <button
               onClick={() => setShowProfileMenu(!showProfileMenu)}
-              className="flex items-center gap-1.5 hover:text-white transition-colors p-1 rounded-lg"
+              className="flex items-center gap-1.5 hover:text-white transition-colors p-1.5 rounded-lg border border-transparent hover:border-slate-800 cursor-pointer"
             >
-              <div className="w-7 h-7 rounded-full bg-gradient-to-br from-pink-500 to-indigo-600 text-white flex items-center justify-center text-xs font-bold shadow-sm">
+              <div className="w-7 h-7 rounded-full bg-slate-800 text-slate-200 border border-slate-700 flex items-center justify-center text-xs font-bold">
                 넥
               </div>
-              <span className="hidden xl:inline text-xs font-bold text-slate-200 max-w-[80px] truncate">
+              <span className="hidden xl:inline text-xs font-medium text-slate-200 max-w-[80px] truncate">
                 {ENTERPRISE_CLIENT_PROFILE.companyName}
               </span>
               <ChevronDown className="w-3 h-3 text-slate-400" />

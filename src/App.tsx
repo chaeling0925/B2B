@@ -139,7 +139,7 @@ export default function App() {
         }}
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
-        onOpenRfp={handleOpenPipeline}
+        onOpenRfp={() => setIsRfpOpen(true)}
         onOpenPipeline={handleOpenPipeline}
         onOpenWorkspace={() => setActiveView('workspace')}
         activeView={activeView}
